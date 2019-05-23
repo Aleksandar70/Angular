@@ -1,0 +1,29 @@
+.btn {
+  font-size: 2rem;
+  float: right;
+}
+
+.user-form {
+  font-family: "Century Gothic";
+  font-size: 2rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.form-control {
+  font-size: 3rem;
+}
+
+.password-field {
+  font-size: 2rem;
+}
+.breadcrumb {
+  font-size: 1.7rem;
+}
+
+.active {
+  font-weight: bold;
+}

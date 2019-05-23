@@ -1,0 +1,70 @@
+.text-box-area {
+  padding: 8px;
+  margin-left: 8%;
+  width: 80%;
+}
+
+.field-title {
+  font-family: "Century Gothic";
+  margin-left: 8%;
+  margin-right: 12%;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.field-subtitle {
+  font-family: "Century Gothic";
+  margin-left: 8%;
+  font-size: 1.5rem;
+  margin-right: 12%;
+  font-weight: bold;
+}
+
+.form-field {
+  font-family: "Century Gothic";
+  margin-left: 8%;
+  font-size: 1.5rem;
+  margin-right: 12%;
+}
+
+.btn-save-position {
+  margin-top: 2%;
+  margin-left: 8%;
+  margin-bottom: 2%;
+}
+
+.btn-primary {
+  margin-left: 1%;
+}
+
+.btn-save-size {
+  font-size: 2rem;
+  width: 20%;
+}
+
+.main-title {
+  color: lightskyblue;
+  font-family: "Century Gothic";
+  margin-top: 4%;
+  margin-left: 8%;
+  margin-right: 12%;
+  margin-bottom: 3%;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.col-sm-2 {
+  text-align: left;
+}
+
+.form-horizontal {
+  margin-bottom: 3%;
+}
+
+.breadcrumb {
+  font-size: 1.7rem;
+}
+
+.active {
+  font-weight: bold;
+}

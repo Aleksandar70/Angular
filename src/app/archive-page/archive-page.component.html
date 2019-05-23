@@ -1,0 +1,37 @@
+<ol class="breadcrumb">
+  <li><a (click)="goToHomePage()">Home Page</a></li>
+  <li><a class="active">Archive Page</a></li>
+</ol>
+<div class="container text-center">
+  <h1>Search your Appraisal sheets</h1>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="search-appraisal-sheet">
+      <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+             placeholder="&#61442; Start searching an appraisal sheet by name">
+    </div>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let appraisalSheet of appraisalSheets | filter:searchText">
+        <td>{{appraisalSheet.employeeName + "_" + appraisalSheet.date}}</td>
+        <td><span *ngIf="appraisalSheet.locked == true; else statusUnlocked">Locked</span></td>
+        <ng-template #statusUnlocked>
+          Unlocked
+        </ng-template>
+        <td>
+          <button class="btn btn-primary">Edit</button>
+          <img src="assets/img/print.png" alt="image" title="Print your appraisal sheet to PDF" (click)="downloadPDF(appraisalSheet.employeeName)">
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
