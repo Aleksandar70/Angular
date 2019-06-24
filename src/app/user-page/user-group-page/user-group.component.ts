@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserGroupService} from '../../service/user-group.service';
 import {NgForm} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {UserGroup} from "../../model/userGroup";
+import {UserGroup} from '../../model/userGroup';
 
 @Component({
   selector: 'app-user-group',
@@ -18,6 +18,7 @@ export class UserGroupComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.userGroupService.getUserGroups().subscribe(
       data => {
         this.userGroup = data;
@@ -27,19 +28,18 @@ export class UserGroupComponent implements OnInit {
 
   onAddUserGroup(form: NgForm) {
     const formValue = form.value;
-    this.userGroupService.addUserGroup(new UserGroup(formValue.name, formValue.description)).subscribe(
-      data => {
-        this.ngOnInit();
-      }
-    );
+    console.log('Form value' + formValue.name);
+    if (formValue.name !== '' && formValue.description !== '') {
+      this.userGroupService.addUserGroup(new UserGroup(formValue.name, formValue.description)).subscribe(
+        data => {
+          this.ngOnInit();
+        }
+      );
+    }
     form.reset();
   }
 
-  goToHomePage() {
-    this.router.navigate(['appraisal-sheet']);
-  }
-
-  goToAdminPage() {
-    this.router.navigate(['admin-page']);
-  }
+  // onDeleteUserGroup() {
+  //   this.userGroupService.deleteUserGroup();
+  // }
 }

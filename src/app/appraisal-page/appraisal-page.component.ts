@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {LoginService} from '../service/login.service';
 
 @Component({
   selector: 'app-appraisal-page',
@@ -7,11 +8,20 @@ import {Router} from '@angular/router';
   styleUrls: ['./appraisal-page.component.css']
 })
 export class AppraisalPageComponent implements OnInit {
+  role: string;
+  showAdminPage = false;
+  showEvaluateProject = false;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private loginService: LoginService) {
   }
 
   ngOnInit() {
+    this.role = this.loginService.getUserRole();
+    if (this.role === 'Admin') {
+      this.showAdminPage = true;
+    } else {
+      this.showEvaluateProject = true;
+    }
   }
 
   onAdminPage() {

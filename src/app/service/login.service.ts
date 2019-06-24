@@ -8,7 +8,7 @@ export class LoginService {
 
   user: User;
   role: string;
-  public URL_LOGIN = '/rest/login';
+  public URL_LOGIN = 'http://localhost:8080/login';
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
   constructor(private http: HttpClient) {

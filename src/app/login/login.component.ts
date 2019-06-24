@@ -4,6 +4,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {LoginService} from '../service/login.service';
 import {NgFlashMessageService} from 'ng-flash-messages';
 import {User} from '../model/user';
+import {UserService} from '../service/user.service';
+import {AuthService} from '../service/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -14,12 +16,17 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
   user: User;
+  id: string;
+
+  // public currentUser: Observable<User>;
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
               private route: ActivatedRoute,
               private loginService: LoginService,
-              private ngFlashMessageService: NgFlashMessageService) {
+              private ngFlashMessageService: NgFlashMessageService,
+              private userService: UserService,
+              private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -27,6 +34,7 @@ export class LoginComponent implements OnInit {
       username: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
+    this.id = localStorage.getItem('token');
   }
 
   get formControls() {
@@ -35,13 +43,14 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-
     if (this.loginForm.invalid) {
       return;
     }
-
     this.loginService.loginUser(this.formControls.username.value, this.formControls.password.value).subscribe(result => {
         this.loginService.setUserRole(result['user']['userGroup']['name']);
+        this.userService.setLoggedInUser(result['user']['username']);
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('token', result['token']);
       }, error => {
         this.ngFlashMessageService.showFlashMessage({
           messages: ['Wrong username or password!'],
@@ -53,5 +62,11 @@ export class LoginComponent implements OnInit {
       () => {
         this.router.navigate(['/appraisal-sheet']);
       });
+  }
+
+  logout(): void {
+    console.log('Logout');
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

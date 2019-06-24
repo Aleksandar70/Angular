@@ -22,8 +22,7 @@ export class AdminPageComponent implements OnInit {
     this.router.navigate(['add-get-user-group']);
   }
 
-  goToHomePage() {
-    this.router.navigate(['appraisal-sheet']);
+  showUsersByGroup() {
+  this.router.navigate(['app-show-users']);
   }
-
 }

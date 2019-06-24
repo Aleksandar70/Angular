@@ -18,8 +18,13 @@ import {NgFlashMessageService, NgFlashMessagesModule} from 'ng-flash-messages';
 import {AppraisalSheetService} from './service/appraisal-sheet.service';
 import {UserService} from './service/user.service';
 import {UserGroupService} from './service/user-group.service';
-import { MatTableModule } from  '@angular/material';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import {MatTableModule} from '@angular/material';
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
+import {LoadingSpinnerComponent} from './loading-spinner/loading-spinner.component';
+import {AppraisalPageInfoComponent} from './appraisal-page-info/appraisal-page-info.component';
+import {AuthGuard} from './service/auth.guard';
+import {AuthService} from './service/authentication.service';
+import { ShowUsersComponent } from './show-users/show-users.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +36,10 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     ArchivePageComponent,
     UserComponent,
     UserGroupComponent,
-    LoginComponent
+    LoginComponent,
+    LoadingSpinnerComponent,
+    AppraisalPageInfoComponent,
+    ShowUsersComponent
   ],
   imports: [
     BrowserModule,
@@ -41,9 +49,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     HttpClientModule,
     FormsModule,
     NgFlashMessagesModule.forRoot(),
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
   ],
-  providers: [LoginService, NgFlashMessageService, UserService, UserGroupService, AppraisalSheetService],
+  providers: [LoginService, NgFlashMessageService, UserService, UserGroupService, AppraisalSheetService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {

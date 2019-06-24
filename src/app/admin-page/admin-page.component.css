@@ -1,6 +1,6 @@
 .glyphicon {
   font-size: 250px;
-  margin-top: 30%;
+  margin-top: 15%;
   margin-left: 30%;
   cursor: pointer;
 }
@@ -12,9 +12,9 @@
 .icon-hover:hover .title-visible {
   visibility: visible;
   font-family: "Century Gothic";
-  font-size: 5rem;
+  font-size: 2.5rem;
   font-weight: bold;
-  padding-top: 10%;
+  padding-top: 0%;
   opacity: 0.5;
   padding-left: 30%;
   text-align: left;
@@ -25,7 +25,7 @@
 }
 
 .breadcrumb {
-  font-size: 1.7rem;
+  font-size: 1.5rem;
 }
 
 .active {

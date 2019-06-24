@@ -1,8 +1,4 @@
-<ol class="breadcrumb">
-  <li><a (click)="goToHomePage()">Home Page</a></li>
-  <li><a (click)="goToAdminPage()">Admin Page</a></li>
-  <li><a class="active">Add new User</a></li>
-</ol>
+<ng-flash-message></ng-flash-message>
 <div class="login-form-design">
   <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="user-form">
     <div class="form-group">
@@ -38,7 +34,7 @@
         <div *ngIf="formControls.password.errors.required">Password is required</div>
       </div>
       <div *ngIf="formControls.password.errors?.minlength">
-        Password must be at least 6 characters long.
+        Six characters minimum
       </div>
     </div>
     <label>User group</label>
@@ -48,8 +44,22 @@
           {{userGroup.name}}
         </option>
       </select>
+      <div *ngIf="submitted && formControls.userGroup.errors" class="invalid-feedback">
+        <div *ngIf="formControls.userGroup.errors.required">User group is required</div>
+      </div>
       <div id="saveButton" class="form-group">
         <button class="btn btn-primary">Save</button>
+      </div>
+      <label>Project manager</label>
+      <div class="form-group">
+        <select [(ngModel)]="selectedUserManager" [ngModelOptions]="{standalone: true}" required>
+          <option *ngFor="let userManager of userManagers" [ngValue]="userManager">
+            {{userManager.name}}
+          </option>
+        </select>
+        <div *ngIf="submitted && formControls.userManager.errors" class="invalid-feedback">
+          <div *ngIf="formControls.userManager.errors.required">User manager is required</div>
+        </div>
       </div>
     </div>
   </form>

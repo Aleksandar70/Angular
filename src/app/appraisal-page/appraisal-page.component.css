@@ -1,6 +1,6 @@
 .glyphicon {
   font-size: 250px;
-  padding: 25%;
+  padding: 10%;
   margin-top: 15%;
 }
 
@@ -11,7 +11,7 @@
 .icon-hover:hover .title-visible {
   visibility: visible;
   font-family: "Century Gothic";
-  font-size: 5rem;
+  font-size: 2.5rem;
   font-weight: bold;
   margin-left: 5%;
   opacity: 0.5;
@@ -21,4 +21,22 @@
 
 .icon-hover:hover .glyphicon {
   opacity: 0.5;
+}
+
+#adminPage {
+  color: currentColor;
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none;
+  pointer-events: all !important;
+  display: inline-block;
+}
+
+#evaluateProject {
+  color: currentColor;
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none;
+  pointer-events: all !important;
+  display: inline-block;
 }

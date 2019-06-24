@@ -10,7 +10,7 @@ table {
   width: 100%;
 }
 
-img {
+#documentId {
   margin: 7%;
 }
 
@@ -37,3 +37,10 @@ img {
 table.table-striped td {
   vertical-align: middle;
 }
+.search .fa-search {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+

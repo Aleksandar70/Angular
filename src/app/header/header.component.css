@@ -1,3 +1,17 @@
-.pull-right{
+.pull-right {
   padding: 1.5%;
+}
+
+span {
+  width: 90%;
+  display: inline-block;
+}
+
+span.align-right {
+  text-align: right;
+  vertical-align: middle;
+}
+
+a {
+  font-size: 120%;
 }

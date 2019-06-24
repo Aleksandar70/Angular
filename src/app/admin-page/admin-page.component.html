@@ -1,15 +1,17 @@
-<ol class="breadcrumb">
-  <li><a (click)="goToHomePage()">Home Page</a></li>
-  <li><a class="active">Admin Page</a></li>
-</ol>
 <div class="icon-hover">
-  <div class="col-lg-6">
+  <div class="col-lg-4">
     <a class="glyphicon glyphicon-user" (click)="onNewUser()"></a>
     <h2 class="title-visible"> Add New user</h2>
   </div>
 </div>
 <div class="icon-hover">
-  <div class="col-lg-6">
+  <div class="col-lg-4">
+    <a class="glyphicon glyphicon-th-list" (click)="showUsersByGroup()"></a>
+    <h2 class="title-visible">Show users</h2>
+  </div>
+</div>
+<div class="icon-hover">
+  <div class="col-lg-4">
     <a class="glyphicon glyphicon-tags" (click)="onNewUserGroup()"></a>
     <h2 class="title-visible"> Add new User Group </h2>
   </div>

@@ -1,18 +1,38 @@
-<div class="icon-hover">
-  <div class="col-xs-4">
-    <a class="glyphicon glyphicon glyphicon-pencil" (click)="onNewSheet()"></a>
-    <h2 class="title-visible"> Create Appraisal Sheet</h2>
+<div *ngIf="showEvaluateProject== true; else disabledAdmin">
+  <div class="icon-hover">
+    <div class="col-xs-4">
+      <a class="glyphicon glyphicon glyphicon-pencil" (click)="onNewSheet()"></a>
+      <h2 class="title-visible">Evaluate project</h2>
+    </div>
   </div>
 </div>
+<ng-template #disabledAdmin>
+  <div class="icon-hover">
+    <div class="col-xs-4">
+      <a id="evaluateProject" class="glyphicon glyphicon glyphicon-pencil"></a>
+      <h2 class="title-visible">Evaluate project</h2>
+    </div>
+  </div>
+</ng-template>
 <div class="icon-hover">
   <div class="col-xs-4">
     <a class="glyphicon glyphicon-folder-open" (click)="onArchive()"></a>
     <h2 class="title-visible"> Archive </h2>
   </div>
 </div>
-<div class="icon-hover">
-  <div class="col-xs-4">
-    <a class="glyphicon glyphicon-wrench" (click)="onAdminPage()"></a>
-    <h2 class="title-visible"> Admin page </h2>
+<div *ngIf="showAdminPage== true; else disabled">
+  <div class="icon-hover">
+    <div class="col-xs-4">
+      <a class="glyphicon glyphicon-wrench" (click)="onAdminPage()"></a>
+      <h2 class="title-visible"> Admin page </h2>
+    </div>
   </div>
 </div>
+<ng-template #disabled>
+  <div class="icon-hover">
+    <div class="col-xs-4">
+      <a id="adminPage" class="glyphicon glyphicon-wrench"></a>
+      <h2 class="title-visible"> Admin page </h2>
+    </div>
+  </div>
+</ng-template>

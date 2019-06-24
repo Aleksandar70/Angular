@@ -14,8 +14,8 @@ import {NgFlashMessageService} from 'ng-flash-messages';
 export class NewSheetPageComponent implements OnInit {
 
   role: string;
-  showEmployeemanager: boolean = false;
-  showEmployee: boolean = false;
+  showEmployeemanager = false;
+  showEmployee = false;
   appSheet: AppraisalSheet;
 
   constructor(private loginService: LoginService, private router: Router, private appraisalSheetService: AppraisalSheetService,
@@ -24,15 +24,11 @@ export class NewSheetPageComponent implements OnInit {
 
   ngOnInit() {
     this.role = this.loginService.getUserRole();
-    if (this.role === 'Employeemanager') {
+    if (this.role === 'Employee manager') {
       this.showEmployeemanager = true;
     } else if (this.role === 'Employee') {
       this.showEmployee = true;
     }
-  }
-
-  goToHomePage() {
-    this.router.navigate(['appraisal-sheet']);
   }
 
   onAddAppSheet(form: NgForm) {
