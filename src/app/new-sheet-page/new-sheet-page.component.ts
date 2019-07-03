@@ -5,6 +5,7 @@ import {NgForm} from '@angular/forms';
 import {AppraisalSheetService} from '../service/appraisal-sheet.service';
 import {AppraisalSheet} from '../model/appraisal-sheet';
 import {NgFlashMessageService} from 'ng-flash-messages';
+import {UserService} from '../service/user.service';
 
 @Component({
   selector: 'app-new-sheet-page',
@@ -17,13 +18,20 @@ export class NewSheetPageComponent implements OnInit {
   showEmployeemanager = false;
   showEmployee = false;
   appSheet: AppraisalSheet;
+  loggedInUser: string;
+  userManager: string;
+  disabledValue = false;
+  year;
 
   constructor(private loginService: LoginService, private router: Router, private appraisalSheetService: AppraisalSheetService,
-              private ngFlashMessageService: NgFlashMessageService) {
+              private ngFlashMessageService: NgFlashMessageService, private userService: UserService) {
   }
 
   ngOnInit() {
-    this.role = this.loginService.getUserRole();
+    this.year = (new Date()).getFullYear() + ': Year end';
+    this.role = this.userService.getUserRole();
+    this.loggedInUser = this.userService.getNameOfUser();
+    this.userManager = this.userService.getUserManager();
     if (this.role === 'Employee manager') {
       this.showEmployeemanager = true;
     } else if (this.role === 'Employee') {
@@ -65,7 +73,7 @@ export class NewSheetPageComponent implements OnInit {
   }
 
   onAddAndLockAppSheet(form: NgForm) {
-    if (confirm('Are you sure you want to save and lock this appraisal sheet? After locking no changes can be made.')) {
+    if (confirm('Are you sure you want to save and lock this project evaluation? After locking no changes can be made.')) {
       let appSheetId = 0;
       if (this.appSheet != null) {
         appSheetId = this.appSheet.appraisalSheetID;
@@ -98,6 +106,7 @@ export class NewSheetPageComponent implements OnInit {
         }
       );
     }
+    this.disabledValue = true;
   }
 
   private instantiateAppSheet(form: NgForm) {

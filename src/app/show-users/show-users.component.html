@@ -1,0 +1,30 @@
+<div id="content" #content>
+  <div class="container text-center">
+    <h1>All users</h1>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="search-appraisal-sheet">
+        <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+               placeholder="&#61442; Start searching user">
+      </div>
+      <app-loading-spinner *ngIf="showSpinner; else showAppraisalSheets"></app-loading-spinner>
+    </div>
+  </div>
+  <ng-template #showAppraisalSheets>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of users | filter:searchText;  let id = index">
+        <td>{{user.firstName + " " + user.lastName}}</td>
+        <td>{{user.userGroup.name}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </ng-template>
+</div>

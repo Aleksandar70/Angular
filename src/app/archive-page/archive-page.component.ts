@@ -12,7 +12,6 @@ import {UserService} from '../service/user.service';
 })
 
 export class ArchivePageComponent implements OnInit {
-
   appraisalSheets: AppraisalSheet[];
   searchText;
   appraisalSheet: AppraisalSheet;
@@ -26,15 +25,15 @@ export class ArchivePageComponent implements OnInit {
 
   ngOnInit() {
     // uradi proveru da li je rola admin!
-    if (this.userService.getLoggedInUser() === 'sandra@gmail.com') {
-      this.appraisalSheetService.getAllAppraisalSheets().subscribe(data => {
-        this.appraisalSheets = data;
-      });
-    } else {
-      this.appraisalSheetService.getAllAppraisalSheetsForUser(this.userService.getLoggedInUser()).subscribe(data => {
-        this.appraisalSheets = data;
-      });
-    }
+    // if (this.userService.getLoggedInUser() === 'admin@gmail.com') {
+    //   this.appraisalSheetService.getAllAppraisalSheets().subscribe(data => {
+    //     this.appraisalSheets = data;
+    //   });
+    // } else {
+    this.appraisalSheetService.getAllAppraisalSheetsForUser(this.userService.getLoggedInUser()).subscribe(data => {
+      this.appraisalSheets = data;
+    });
+    // }
     this.showSpinner = false;
     this.userService.getUserByUserName().subscribe(
       data => {
@@ -59,10 +58,10 @@ export class ArchivePageComponent implements OnInit {
   }
 
   openDocument(appraisalSheet: AppraisalSheet) {
-    this.router.navigate(['appraisal-sheet-info'], {state: {sheet: appraisalSheet}});
+    this.router.navigate(['document-info'], {state: {sheet: appraisalSheet}});
   }
 
   editDocument(appraisalSheet: AppraisalSheet) {
-    this.router.navigate(['new-sheet-page'], {state: {sheet: appraisalSheet}});
+    this.router.navigate(['project-evaluation'], {state: {sheet: appraisalSheet}});
   }
 }

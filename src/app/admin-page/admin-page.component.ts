@@ -15,14 +15,14 @@ export class AdminPageComponent implements OnInit {
   }
 
   onNewUser() {
-    this.router.navigate(['add-new-user']);
+    this.router.navigate(['new-user']);
   }
 
   onNewUserGroup() {
-    this.router.navigate(['add-get-user-group']);
+    this.router.navigate(['user-group']);
   }
 
   showUsersByGroup() {
-  this.router.navigate(['app-show-users']);
+  this.router.navigate(['all-users']);
   }
 }

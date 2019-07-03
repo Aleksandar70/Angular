@@ -10,8 +10,7 @@ export class UserService {
   public URL_ADD_NEW_USER = 'http://localhost:8080/add-new-user';
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
   public URL_GET_LOGGED_IN_USER = 'http://localhost:8080/get-logged-in-user';
-  public URL_LOGOUT_USER = 'http://localhost:8080/logout';
-
+  public URL_GET_ALL_USERS = 'http://localhost:8080/get-all-users';
 
   constructor(private http: HttpClient) {
   }
@@ -33,5 +32,33 @@ export class UserService {
 
   getLoggedInUser() {
     return sessionStorage.getItem('userName');
+  }
+
+  getAllUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.URL_GET_ALL_USERS);
+  }
+
+  setNameOfUser(name: string) {
+    sessionStorage.setItem('name', name);
+  }
+
+  getNameOfUser() {
+    return sessionStorage.getItem('name');
+  }
+
+  setUserManager(userManager: string) {
+    sessionStorage.setItem('userManager', userManager);
+  }
+
+  getUserManager() {
+    return sessionStorage.getItem('userManager');
+  }
+
+  getUserRole() {
+    return sessionStorage.getItem('role');
+  }
+
+  setUserRole(role: string) {
+    sessionStorage.setItem('role', role);
   }
 }

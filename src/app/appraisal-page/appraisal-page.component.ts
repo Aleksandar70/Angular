@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {LoginService} from '../service/login.service';
+import {UserService} from '../service/user.service';
 
 @Component({
   selector: 'app-appraisal-page',
@@ -12,11 +13,11 @@ export class AppraisalPageComponent implements OnInit {
   showAdminPage = false;
   showEvaluateProject = false;
 
-  constructor(private router: Router, private loginService: LoginService) {
+  constructor(private router: Router, private userService: UserService) {
   }
 
   ngOnInit() {
-    this.role = this.loginService.getUserRole();
+    this.role = this.userService.getUserRole();
     if (this.role === 'Admin') {
       this.showAdminPage = true;
     } else {
@@ -29,11 +30,10 @@ export class AppraisalPageComponent implements OnInit {
   }
 
   onNewSheet() {
-    this.router.navigate(['new-sheet-page']);
+    this.router.navigate(['project-evaluation']);
   }
 
   onArchive() {
     this.router.navigate(['archive-page']);
   }
-
 }

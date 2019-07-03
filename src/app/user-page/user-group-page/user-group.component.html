@@ -8,7 +8,7 @@
 <ul class="list-group col-xs-6">
   <a
     class="list-group-item"
-    *ngFor="let userGroup of userGroup;">
+    *ngFor="let userGroup of userGroup;let id = index">
     <p class="role-name-style">{{userGroup.name}} </p>
     <p class="role-description-style">{{userGroup.description}}</p>
   </a>
@@ -38,6 +38,6 @@
   </div>
   <div class="pull-right btn-size">
     <button class="btn btn-success" type="submit">Add</button>
-    <button class="btn btn-danger" type="submit">Delete</button>
+    <button class="btn btn-danger" type="button" (click)="onDelete()">Delete</button>
   </div>
 </form>

@@ -1,0 +1,47 @@
+.breadcrumb {
+  font-size: 1.7rem;
+}
+
+.active {
+  font-weight: bold;
+}
+
+table {
+  width: 100%;
+}
+
+#documentId {
+  margin: 7%;
+}
+
+.search-appraisal-sheet {
+  max-width: 500px;
+  padding-bottom: 50px;
+  margin: auto;
+}
+
+.form-control {
+  box-shadow: 0 10px 40px 0 #B0C1D9;
+}
+
+.form-control::placeholder {
+  font-family: FontAwesome;
+}
+
+.container {
+  padding-top: 50px;
+  padding-bottom: 10px;
+  color: #405065;
+}
+
+table.table-striped td {
+  vertical-align: middle;
+}
+
+.search .fa-search {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+

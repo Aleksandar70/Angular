@@ -12,18 +12,36 @@ import {AuthService} from '../service/authentication.service';
 export class HeaderComponent implements OnInit {
 
   public route = '';
+  showAdminPageNavigation = false;
+  showUserPageNavigation = false;
 
   constructor(private router: Router, private userService: UserService, location: Location, private authService: AuthService) {
     router.events.subscribe(val => {
-      if (location.path().split('-').length === 3) {
-        console.log('length: ' + location.path().split('-').length);
-        this.route = location.path().substr(1).split('-')[0].charAt(0).toUpperCase() + location.path().substr(1).split('-')[0].slice(1)
-          + ' ' + location.path().substr(1).split('-')[1] + ' ' + location.path().substr(1).split('-')[2];
-        this.route = 'Project evaluation';
-      } else {
-        console.log('Length !=3' + location.path().split('-').length);
-        this.route = location.path().substr(1).split('-')[0].charAt(0).toUpperCase() + location.path().substr(1).split('-')[0].slice(1)
-          + ' ' + location.path().substr(1).split('-')[1];
+      this.route = location.path().substr(1).split('-')[0].charAt(0).toUpperCase() + location.path().substr(1).split('-')[0].slice(1)
+        + ' ' + location.path().substr(1).split('-')[1];
+      if (this.route.startsWith('All users')
+        || this.route.startsWith('New user')
+        || this.route.startsWith('User group')
+        || this.route.startsWith('Admin page')) {
+        this.showAdminPageNavigation = true;
+      }
+      if (this.route.startsWith('Document info') || this.route.startsWith('Archive') || this.route.startsWith('Project evaluation')) {
+        this.showUserPageNavigation = true;
+      }
+      if (this.route.startsWith('Project evaluation')) {
+        this.showUserPageNavigation = false;
+      }
+      if (this.route.startsWith('Archive')) {
+        this.route = '';
+      }
+      if (this.route.startsWith('Home')) {
+        this.showUserPageNavigation = false;
+        this.showAdminPageNavigation = false;
+        this.route = '';
+      }
+      if (this.route.startsWith('Admin')) {
+        this.showUserPageNavigation = false;
+        this.route = '';
       }
     });
   }
@@ -38,12 +56,19 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(): void {
-    console.log('Logout');
     this.authService.logout();
     this.router.navigate(['/login']);
   }
 
   goToHomePage() {
-    this.router.navigate(['appraisal-sheet']);
+    this.router.navigate(['home']);
+  }
+
+  goToAdminPage() {
+    this.router.navigate(['admin-page']);
+  }
+
+  goToArchivePage() {
+    this.router.navigate(['archive-page']);
   }
 }

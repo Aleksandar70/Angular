@@ -8,18 +8,20 @@ import {AdminPageComponent} from './admin-page/admin-page.component';
 import {ArchivePageComponent} from './archive-page/archive-page.component';
 import {UserComponent} from './user-page/user.component';
 import {UserGroupComponent} from './user-page/user-group-page/user-group.component';
+import {ShowUsersComponent} from './show-users/show-users.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
-  {path: 'appraisal-sheet', component: AppraisalPageComponent},
-  {path: 'appraisal-sheet-info', component: AppraisalPageInfoComponent},
+  {path: 'home', component: AppraisalPageComponent},
+  {path: 'document-info', component: AppraisalPageInfoComponent},
   {path: 'admin-page', component: AdminPageComponent},
-  {path: 'new-sheet-page', component: NewSheetPageComponent},
+  {path: 'project-evaluation', component: NewSheetPageComponent},
   {path: 'archive-page', component: ArchivePageComponent},
-  {path: 'add-new-user', component: UserComponent},
-  {path: 'add-get-user-group', component: UserGroupComponent},
+  {path: 'new-user', component: UserComponent},
+  {path: 'user-group', component: UserGroupComponent},
   {path: 'logout', component: UserGroupComponent},
+  {path: 'all-users', component: ShowUsersComponent},
   {path: '**', redirectTo: ''}];
 
 @NgModule({

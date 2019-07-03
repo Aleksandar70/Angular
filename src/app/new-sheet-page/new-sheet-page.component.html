@@ -4,117 +4,129 @@
 <form class="form-horizontal form-field" #appSheetForm="ngForm">
   <div [hidden]="appSheetForm.valid || !appSheetForm.touched" class="alert alert-danger"> All fields are required
   </div>
-  <div class="form-group">
-    <label class="control-label col-sm-2" for="name">Employee Name:</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" ngModel required>
+  <fieldset [disabled]="disabledValue">
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="name">Employee Name:</label>
+      <div class="col-sm-10">
+        <input [(ngModel)]="this.loggedInUser" disabled="true" type="text" class="form-control" id="name" name="name"
+               placeholder="Enter name"
+               ngModel required>
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label class="control-label col-sm-2" for="division">Division:</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="division" name="division" placeholder="Enter division" ngModel
-             required>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="division">Division:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="division" name="division" placeholder="Enter division" ngModel
+               required>
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label class="control-label col-sm-2" for="career">Career Level:</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="career" name="careerLevel" placeholder="Enter career level" ngModel
-             required>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="career">Career Level:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="career" name="careerLevel" placeholder="Enter career level" ngModel
+               required>
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label class="control-label col-sm-2" for="app-period">Period:</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="app-period" name="appraisalPeriod"
-             placeholder="Enter period"
-             ngModel required>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="app-period">Period:</label>
+      <div class="col-sm-10">
+        <input [(ngModel)]="this.year" disabled="true" type="text" class="form-control" id="app-period"
+               name="appraisalPeriod"
+               placeholder="Enter period"
+               ngModel required>
 
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label class="control-label col-sm-2" for="manager">Manager:</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="manager" name="manager" placeholder="Enter manager" ngModel
-             required>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="manager">Manager:</label>
+      <div class="col-sm-10">
+        <input [(ngModel)]="this.userManager" disabled="true" type="text" class="form-control" id="manager"
+               name="manager"
+               placeholder="Enter manager" ngModel
+               required>
+      </div>
     </div>
-  </div>
-  <br>
-  <div *ngIf="showEmployee">
-    <div id="content" #content>
-      <h2 class="field-title">1. Are you satisfied working on this project?
+    <br>
+    <div *ngIf="showEmployee">
+      <div id="content" #content>
+        <h2 class="field-title">1. Are you satisfied working on this project?
+          <hr>
+        </h2>
+      </div>
+      <h1 class="field-subtitle">1.1 Do you find tasks difficult for your current skills?</h1>
+      <textarea class="text-box-area form-control" rows="10" name="tasksBackdated" ngModel required>
+</textarea>
+      <h2 class="field-title">2. Do you often receive change requests?
         <hr>
       </h2>
+      <h1 class="field-subtitle">2.1. Do you think that functional specification is clear enough?</h1>
+      <textarea class="text-box-area form-control" rows="6" name="teamLeadFeedback" ngModel required>
+</textarea>
+      <h1 class="field-subtitle">2.2 Do you find hard to follow the pace?</h1>
+      <textarea class="text-box-area form-control" rows="6" name="companyFeedback" ngModel required>
+</textarea>
+      <h2 class="field-title">3. Do you consider yourself enough independent for solving the tasks?
+        <hr>
+      </h2>
+      <textarea class="text-box-area form-control" rows="10" name="targetsBackdated" ngModel required>
+</textarea>
+      <h2 class="field-title">4. Do you have any suggestions for improving current progress?
+        <hr>
+      </h2>
+      <textarea class="text-box-area form-control" rows="10" name="employeeExpectations" ngModel required>
+</textarea>
     </div>
-    <h1 class="field-subtitle">1.1 Do you find tasks difficult for your current skills?</h1>
-    <textarea class="text-box-area form-control" rows="10" name="tasksBackdated" ngModel required>
+    <div *ngIf="showEmployeemanager">
+      <h2 class="field-title">5. Please describe progress in next topics like satisfactory or not, and why.
+        <hr>
+      </h2>
+      <h1 class="field-subtitle">5.1. financial situation</h1>
+      <textarea class="text-box-area form-control" rows="3" name="roleRequirementsGoals" ngModel required>
 </textarea>
-    <h2 class="field-title">2. Do you often receive change requests?
-      <hr>
-    </h2>
-    <h1 class="field-subtitle">2.1. Do you think that functional specification is clear enough?</h1>
-    <textarea class="text-box-area form-control" rows="6" name="teamLeadFeedback" ngModel required>
+      <h1 class="field-subtitle">5.2. human resources</h1>
+      <textarea class="text-box-area form-control" rows="3" name="selfCompetenceGoals" ngModel required>
 </textarea>
-    <h1 class="field-subtitle">2.2 Do you find hard to follow the pace?</h1>
-    <textarea class="text-box-area form-control" rows="6" name="companyFeedback" ngModel required>
-</textarea>
-    <h2 class="field-title">3. Do you consider yourself enough independent for solving the tasks?
-      <hr>
-    </h2>
-    <textarea class="text-box-area form-control" rows="10" name="targetsBackdated" ngModel required>
-</textarea>
-  </div>
-  <div *ngIf="showEmployeemanager">
-    <h2 class="field-title">4. Describe the progress of the project
-      <hr>
-    </h2>
-    <h1 class="field-subtitle">4.1. Where do you think the project is headed in the next 5 months?</h1>
-    <textarea class="text-box-area form-control" rows="3" name="roleRequirements" ngModel required>
-</textarea>
-    <h1 class="field-subtitle">4.2. What do you consider the biggest obstacle at this moment, and why?</h1>
-    <textarea class="text-box-area form-control" rows="3" name="selfCompetence" ngModel required>
-</textarea>
-    <h1 class="field-subtitle">4.3. What are the best sides and highlights right now?</h1>
-    <textarea class="text-box-area form-control" rows="3" name="socialCompetence" ngModel required>
-</textarea>
-    <h1 class="field-subtitle">4.4. Do you think that people working on this project are satisfied?</h1>
-    <textarea class="text-box-area form-control" rows="3" name="methodicalCompetence" ngModel required>
-</textarea>
-    <h2 class="field-title">5. Please describe progress in next topics like satisfactory or not, and why.
-      <hr>
-    </h2>
-    <h1 class="field-subtitle">5.1. financial situation</h1>
-    <textarea class="text-box-area form-control" rows="3" name="roleRequirementsGoals" ngModel required>
-</textarea>
-    <h1 class="field-subtitle">5.2. human resources</h1>
-    <textarea class="text-box-area form-control" rows="3" name="selfCompetenceGoals" ngModel required>
-</textarea>
-    <h1 class="field-subtitle">5.3. scope</h1>
-    <textarea class="text-box-area form-control" rows="3" name="companyOrientedGoals" ngModel required>
+      <h1 class="field-subtitle">5.3. scope</h1>
+      <textarea class="text-box-area form-control" rows="3" name="companyOrientedGoals" ngModel required>
 </textarea>
 
-    <h1 class="field-subtitle">5.4. time</h1>
-    <textarea class="text-box-area form-control" rows="3" name="economicGoal" ngModel required>
+      <h1 class="field-subtitle">5.4. time</h1>
+      <textarea class="text-box-area form-control" rows="3" name="economicGoal" ngModel required>
 </textarea>
-    <h2 class="field-title">6. Describe feedback you are getting from the client up to now.
-      <hr>
-    </h2>
-    <textarea class="text-box-area form-control" rows="10" name="developmentObjectives" ngModel required>
+      <h2 class="field-title">6. Describe feedback you are getting from the client up to now.
+        <hr>
+      </h2>
+      <textarea class="text-box-area form-control" rows="10" name="developmentObjectives" ngModel required>
 </textarea>
-    <h2 class="field-title">7. What are your suggestions for improving current process on this project?
-      <hr>
-    </h2>
-    <textarea class="text-box-area form-control" rows="10" name="developmentPotential" ngModel required>
+      <h2 class="field-title">7. What are your suggestions for improving current process on this project?
+        <hr>
+      </h2>
+      <textarea class="text-box-area form-control" rows="10" name="developmentPotential" ngModel required>
 </textarea>
-  </div>
-  <div *ngIf="showEmployee">
-    <h2 class="field-title">8. Do you have any suggestions for improving current progress?
-      <hr>
-    </h2>
-    <textarea class="text-box-area form-control" rows="10" name="employeeExpectations" ngModel required>
+      <h2 class="field-title">8. Describe the progress of the project
+        <hr>
+      </h2>
+      <h1 class="field-subtitle">8.1. Where do you think the project is headed in the next 5 months?</h1>
+      <textarea class="text-box-area form-control" rows="3" name="roleRequirements" ngModel required>
 </textarea>
-  </div>
+      <h1 class="field-subtitle">8.2. What do you consider the biggest obstacle at this moment, and why?</h1>
+      <textarea class="text-box-area form-control" rows="3" name="selfCompetence" ngModel required>
+</textarea>
+      <h1 class="field-subtitle">8.3. What are the best sides and highlights right now?</h1>
+      <textarea class="text-box-area form-control" rows="3" name="socialCompetence" ngModel required>
+</textarea>
+      <h1 class="field-subtitle">8.4. Do you think that people working on this project are satisfied?</h1>
+      <textarea class="text-box-area form-control" rows="3" name="methodicalCompetence" ngModel required>
+</textarea>
+    </div>
+    <!--  <div *ngIf="showEmployee">-->
+    <!--    <h2 class="field-title">8. Do you have any suggestions for improving current progress?-->
+    <!--      <hr>-->
+    <!--    </h2>-->
+    <!--    <textarea class="text-box-area form-control" rows="10" name="employeeExpectations" ngModel required>-->
+    <!--</textarea>-->
+    <!--  </div>-->
+  </fieldset>
 </form>
 
 <ng-flash-message></ng-flash-message>

@@ -2,3 +2,22 @@ img {
   position: absolute;
   right: 25px;
 }
+
+.main-title {
+  color: lightskyblue;
+  font-family: "Century Gothic";
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.field-title {
+  font-family: "Century Gothic";
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.field-subtitle {
+  font-family: "Century Gothic";
+  font-size: 1.5rem;
+  font-weight: bold;
+}

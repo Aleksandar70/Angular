@@ -32,6 +32,6 @@ export class AppraisalPageInfoComponent implements OnInit {
       'width': 190,
       'elementHandlers': specialElementHandlers
     });
-    doc.save('appraisalSheet.pdf');
+    doc.save('projectEvaluation' + this.appraisalSheet.employeeName.replace(' ', '') + '.pdf');
   }
 }

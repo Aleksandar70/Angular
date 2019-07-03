@@ -57,9 +57,8 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-
           "options": {
-            "browserTarget": "appraisal-sheet-gui:build",
+            "browserTarget": "appraisal-sheet-gui:build"
           },
           "configurations": {
             "production": {
