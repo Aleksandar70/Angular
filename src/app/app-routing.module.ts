@@ -1,9 +1,9 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from './login/login.component';
-import {AppraisalPageComponent} from './appraisal-page/appraisal-page.component';
-import {AppraisalPageInfoComponent} from './appraisal-page-info/appraisal-page-info.component';
-import {NewSheetPageComponent} from './new-sheet-page/new-sheet-page.component';
+import {AppraisalPageComponent} from './home-page/appraisal-page.component';
+import {AppraisalPageInfoComponent} from './document-page-info/appraisal-page-info.component';
+import {NewSheetPageComponent} from './project-evaluation-page/new-sheet-page.component';
 import {AdminPageComponent} from './admin-page/admin-page.component';
 import {ArchivePageComponent} from './archive-page/archive-page.component';
 import {UserComponent} from './user-page/user.component';

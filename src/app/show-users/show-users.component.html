@@ -20,7 +20,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let user of users | filter:searchText;  let id = index">
+      <tr *ngFor="let user of users | filter:searchText">
         <td>{{user.firstName + " " + user.lastName}}</td>
         <td>{{user.userGroup.name}}</td>
       </tr>

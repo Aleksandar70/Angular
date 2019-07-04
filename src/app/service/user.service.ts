@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {User} from '../model/user';
 import {Observable} from 'rxjs';
 import {UserGroup} from '../model/userGroup';
+import {UserManager} from '../model/user-manager';
 
 @Injectable()
 export class UserService {
@@ -15,8 +16,10 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
-  saveUser(firstName: string, lastName: string, username: string, password: string, userGroup: UserGroup): Observable<Object> {
-    this.user = new User(username, password, userGroup, firstName, lastName);
+  saveUser(firstName: string, lastName: string,
+           username: string, password: string,
+           userGroup: UserGroup, userManager: UserManager): Observable<Object> {
+    this.user = new User(username, password, userGroup, firstName, lastName, userManager);
     return this.http.post(this.URL_ADD_NEW_USER, this.user, {headers: this.headers});
   }
 

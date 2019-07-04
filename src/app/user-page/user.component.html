@@ -44,23 +44,23 @@
           {{userGroup.name}}
         </option>
       </select>
-      <div *ngIf="submitted && formControls.userGroup.errors" class="invalid-feedback">
-        <div *ngIf="formControls.userGroup.errors.required">User group is required</div>
-      </div>
-      <div id="saveButton" class="form-group">
-        <button class="btn btn-primary">Save</button>
-      </div>
-      <label>Project manager</label>
-      <div class="form-group">
-        <select [(ngModel)]="selectedUserManager" [ngModelOptions]="{standalone: true}" required>
-          <option *ngFor="let userManager of userManagers" [ngValue]="userManager">
-            {{userManager.name}}
-          </option>
-        </select>
-        <div *ngIf="submitted && formControls.userManager.errors" class="invalid-feedback">
-          <div *ngIf="formControls.userManager.errors.required">User manager is required</div>
-        </div>
-      </div>
+      <!--      <div *ngIf="submitted && formControls.userGroup.errors" class="invalid-feedback">-->
+      <!--        &lt;!&ndash;        <div *ngIf="formControls.userGroup.errors.required">User group is required</div>&ndash;&gt;-->
+      <!--      </div>-->
+    </div>
+    <label>Project manager</label>
+    <div class="form-group">
+      <select [(ngModel)]="selectedUserManager" [ngModelOptions]="{standalone: true}" required>
+        <option *ngFor="let userManager of userManagers" [ngValue]="userManager">
+          {{userManager.name}}
+        </option>
+      </select>
+      <!--        <div *ngIf="submitted && formControls.userManager.errors" class="invalid-feedback">-->
+      <!--          &lt;!&ndash;          <div *ngIf="formControls.userManager.errors.required">User manager is required</div>&ndash;&gt;-->
+      <!--        </div>-->
+    </div>
+    <div id="saveButton" class="form-group">
+      <button class="btn btn-primary">Save</button>
     </div>
   </form>
 </div>

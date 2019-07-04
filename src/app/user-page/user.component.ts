@@ -34,8 +34,8 @@ export class UserComponent implements OnInit {
     this.userForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      userGroup: ['', Validators.required],
-      userManager: ['', Validators.required],
+      // userGroup: ['', Validators.required],
+      // userManager: ['', Validators.required],
       username: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
@@ -52,7 +52,7 @@ export class UserComponent implements OnInit {
     }
     this.userService.saveUser(this.formControls.firstName.value, this.formControls.lastName.value,
       this.formControls.username.value, this.formControls.password.value,
-      this.selectedUserGroup).subscribe(result => {
+      this.selectedUserGroup, this.selectedUserManager).subscribe(result => {
         this.ngFlashMessageService.showFlashMessage({
           messages: ['User successfully saved!'],
           dismissible: true,
