@@ -119,24 +119,15 @@
       <textarea class="text-box-area form-control" rows="3" name="methodicalCompetence" ngModel required>
 </textarea>
     </div>
-    <!--  <div *ngIf="showEmployee">-->
-    <!--    <h2 class="field-title">8. Do you have any suggestions for improving current progress?-->
-    <!--      <hr>-->
-    <!--    </h2>-->
-    <!--    <textarea class="text-box-area form-control" rows="10" name="employeeExpectations" ngModel required>-->
-    <!--</textarea>-->
-    <!--  </div>-->
   </fieldset>
 </form>
 
 <ng-flash-message></ng-flash-message>
 <div class="btn-save-position">
   <button class="btn btn-success btn-save-size" type="button" (click)="onAddAppSheet(appSheetForm)"
-          [disabled]="!appSheetForm.valid">Save
+          [disabled]="!appSheetForm.valid || this.enable">Save
   </button>
   <button class="btn btn-primary btn-save-size" type="button" (click)="onAddAndLockAppSheet(appSheetForm)"
-          [disabled]="!appSheetForm.valid">Save & Lock
+          [disabled]="!appSheetForm.valid || this.enable">Save & Lock
   </button>
 </div>
-
-

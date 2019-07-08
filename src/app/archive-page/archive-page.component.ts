@@ -14,7 +14,6 @@ import {UserService} from '../service/user.service';
 export class ArchivePageComponent implements OnInit {
   appraisalSheets: AppraisalSheet[];
   searchText;
-  appraisalSheet: AppraisalSheet;
   showSpinner = true;
   loggedInUser: User;
   editField: string;
@@ -24,27 +23,15 @@ export class ArchivePageComponent implements OnInit {
   }
 
   ngOnInit() {
-    // uradi proveru da li je rola admin!
-    // if (this.userService.getLoggedInUser() === 'admin@gmail.com') {
-    //   this.appraisalSheetService.getAllAppraisalSheets().subscribe(data => {
-    //     this.appraisalSheets = data;
-    //   });
-    // } else {
     this.appraisalSheetService.getAllAppraisalSheetsForUser(this.userService.getLoggedInUser()).subscribe(data => {
       this.appraisalSheets = data;
     });
-    // }
     this.showSpinner = false;
     this.userService.getUserByUserName().subscribe(
       data => {
         this.loggedInUser = data;
       }
     );
-  }
-
-  // displayedColumns: string[] = ['Name', 'Status', 'Actions'];
-  editAppraisalSheet() {
-
   }
 
   updateList(id: number, property: string, event: any) {

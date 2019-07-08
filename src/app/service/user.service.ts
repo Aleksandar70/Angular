@@ -12,6 +12,7 @@ export class UserService {
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
   public URL_GET_LOGGED_IN_USER = 'http://localhost:8080/get-logged-in-user';
   public URL_GET_ALL_USERS = 'http://localhost:8080/get-all-users';
+  public URL_DELETE_USER = 'http://localhost:8080/delete-user';
 
   constructor(private http: HttpClient) {
   }
@@ -63,5 +64,10 @@ export class UserService {
 
   setUserRole(role: string) {
     sessionStorage.setItem('role', role);
+  }
+
+  deleteUser(user: User) {
+    const username = user.username;
+    return this.http.delete(`${this.URL_DELETE_USER}/${username}`, {headers: this.headers});
   }
 }

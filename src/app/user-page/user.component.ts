@@ -6,6 +6,7 @@ import {UserGroupService} from '../service/user-group.service';
 import {Router} from '@angular/router';
 import {NgFlashMessageService} from 'ng-flash-messages';
 import {UserManager} from '../model/user-manager';
+import {User} from '../model/user';
 
 @Component({
   selector: 'app-user',
@@ -20,6 +21,7 @@ export class UserComponent implements OnInit {
   selectedUserGroup;
   userManagers: UserManager[] = [];
   selectedUserManager;
+  users: User[];
 
   constructor(private router: Router,
               private formBuilder: FormBuilder,
@@ -50,6 +52,24 @@ export class UserComponent implements OnInit {
     if (this.userForm.invalid) {
       return;
     }
+    this.userService.getAllUsers().subscribe(data => {
+      this.users = data;
+      const filteredUser = this.users.filter(user => user.username === this.formControls.username.value);
+      if (filteredUser.length !== 0) {
+        console.log('USAO');
+        this.ngFlashMessageService.showFlashMessage({
+          messages: ['Username already exists!'],
+          dismissible: true,
+          timeout: false,
+          type: 'danger'
+        });
+      } else {
+        this.addUser();
+      }
+    });
+  }
+
+  addUser() {
     this.userService.saveUser(this.formControls.firstName.value, this.formControls.lastName.value,
       this.formControls.username.value, this.formControls.password.value,
       this.selectedUserGroup, this.selectedUserManager).subscribe(result => {
