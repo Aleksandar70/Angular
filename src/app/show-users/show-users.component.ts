@@ -13,6 +13,7 @@ export class ShowUsersComponent implements OnInit {
   users: User[];
   searchText;
   showSpinner = true;
+  index = 0;
   loggedInUser: User;
   @ViewChild('content') content: ElementRef;
 

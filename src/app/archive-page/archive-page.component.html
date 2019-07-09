@@ -16,13 +16,15 @@
     <table class="table table-striped">
       <thead>
       <tr>
+        <th>No.</th>
         <th>Name</th>
         <th>Status</th>
         <th>Actions</th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let appraisalSheet of appraisalSheets | filter:searchText;  let id = index">
+      <tr *ngFor="let appraisalSheet of appraisalSheets | filter:searchText;  let i = index;">
+        <td>{{i + 1}}</td>
         <td>{{appraisalSheet.employeeName + "_" + appraisalSheet.date}}</td>
         <td><span *ngIf="appraisalSheet.locked == true; else statusUnlocked">Locked</span></td>
         <ng-template #statusUnlocked>
@@ -37,4 +39,3 @@
     </table>
   </ng-template>
 </div>
-<!--<button mat-button class="btn btn-primary" (click)="editAppraisalSheet()">Edit</button>-->

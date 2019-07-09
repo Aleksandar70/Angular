@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {LoginService} from '../service/login.service';
 import {Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
@@ -26,9 +26,15 @@ export class NewSheetPageComponent implements OnInit {
   appSheets: AppraisalSheet[];
   locked = false;
   enable = false;
+  appraisalSheet: AppraisalSheet;
 
   constructor(private loginService: LoginService, private router: Router, private appraisalSheetService: AppraisalSheetService,
               private ngFlashMessageService: NgFlashMessageService, private userService: UserService) {
+    if (typeof this.router.getCurrentNavigation().extras.state === 'undefined') {
+      this.appraisalSheet = window.history.state;
+    } else {
+      this.appraisalSheet = this.router.getCurrentNavigation().extras.state.sheet;
+    }
   }
 
   ngOnInit() {
@@ -57,20 +63,21 @@ export class NewSheetPageComponent implements OnInit {
     if (this.appSheet != null) {
       appSheetId = this.appSheet.appraisalSheetID;
     }
-
+    console.log('Locked' + this.locked);
     if (this.locked) {
-      this.instantiateAppSheetAndLock(form);
+      this.ngFlashMessageService.showFlashMessage({
+        messages: ['Document is locked!'],
+        dismissible: true,
+        timeout: false,
+        type: 'danger'
+      });
+      return;
     } else {
       this.instantiateAppSheet(form);
     }
     if (appSheetId !== 0) {
       this.appSheet.appraisalSheetID = appSheetId;
     }
-    // const niz = this.appraisalSheetService.getAllAppraisalSheets();
-    // niz.subscribe(data => {
-    //   this.appSheets = data;
-    //   this.addAppraisalSheet();
-    // });
     this.addAppraisalSheet();
   }
 
@@ -114,7 +121,7 @@ export class NewSheetPageComponent implements OnInit {
       if (this.appSheet != null) {
         appSheetId = this.appSheet.appraisalSheetID;
       }
-      this.instantiateAppSheet(form);
+      this.instantiateAppSheetAndLock(form);
       if (appSheetId !== 0) {
         this.appSheet.appraisalSheetID = appSheetId;
       }

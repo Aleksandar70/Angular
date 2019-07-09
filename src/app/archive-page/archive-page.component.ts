@@ -49,6 +49,8 @@ export class ArchivePageComponent implements OnInit {
   }
 
   editDocument(appraisalSheet: AppraisalSheet) {
-    this.router.navigate(['project-evaluation'], {state: {sheet: appraisalSheet}});
+    if (!appraisalSheet.locked) {
+      this.router.navigate(['project-evaluation'], {state: {sheet: appraisalSheet}});
+    }
   }
 }

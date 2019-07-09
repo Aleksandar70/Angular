@@ -16,13 +16,15 @@
     <table class="table table-striped">
       <thead>
       <tr>
+        <th>No.</th>
         <th>Name</th>
         <th>Role</th>
         <th>Action</th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let user of users | filter:searchText">
+      <tr *ngFor="let user of users | filter:searchText;let i=index;">
+        <td>{{i + 1}}</td>
         <td>{{user.firstName + " " + user.lastName}}</td>
         <td>{{user.userGroup.name}}</td>
         <td>

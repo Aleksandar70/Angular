@@ -14,7 +14,11 @@ export class AppraisalPageInfoComponent implements OnInit {
   @ViewChild('sheetContent') sheetContent: ElementRef;
 
   constructor(private router: Router) {
-    this.appraisalSheet = this.router.getCurrentNavigation().extras.state.sheet;
+    if (typeof this.router.getCurrentNavigation().extras.state === 'undefined') {
+      this.appraisalSheet = window.history.state;
+    } else {
+      this.appraisalSheet = this.router.getCurrentNavigation().extras.state.sheet;
+    }
   }
 
   ngOnInit() {
