@@ -24,7 +24,8 @@ import {LoadingSpinnerComponent} from './loading-spinner/loading-spinner.compone
 import {AppraisalPageInfoComponent} from './document-page-info/appraisal-page-info.component';
 import {AuthGuard} from './service/auth.guard';
 import {AuthService} from './service/authentication.service';
-import { ShowUsersComponent } from './show-users/show-users.component';
+import {ShowUsersComponent} from './show-users/show-users.component';
+import {SortDirective} from './directives/SortDirective';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ShowUsersComponent } from './show-users/show-users.component';
     LoginComponent,
     LoadingSpinnerComponent,
     AppraisalPageInfoComponent,
-    ShowUsersComponent
+    ShowUsersComponent,
+    SortDirective
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,7 @@ import { ShowUsersComponent } from './show-users/show-users.component';
     HttpClientModule,
     FormsModule,
     NgFlashMessagesModule.forRoot(),
-    Ng2SearchPipeModule,
+    Ng2SearchPipeModule
   ],
   providers: [LoginService, NgFlashMessageService, UserService, UserGroupService, AppraisalSheetService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
