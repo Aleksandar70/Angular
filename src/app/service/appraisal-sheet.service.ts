@@ -8,11 +8,13 @@ export class AppraisalSheetService {
   public URL_ADD_APPRAISAL_SHEET: string;
   public URL_ARCHIVE_PAGE: string;
   public URL_GET_APPRAISAL_SHEET: string;
+  public URL_LOCK_APPRAISAL_SHEET;
 
   constructor(private http: HttpClient) {
     this.URL_ADD_APPRAISAL_SHEET = 'http://localhost:8080/add-appraisal-sheet';
     this.URL_ARCHIVE_PAGE = 'http://localhost:8080/archive-page';
     this.URL_GET_APPRAISAL_SHEET = 'http://localhost:8080/get-appraisal-sheet';
+    this.URL_LOCK_APPRAISAL_SHEET = 'http://localhost:8080/lock-appraisal-sheet';
   }
 
   public addAppraisalSheet(appSheet: AppraisalSheet) {
@@ -31,6 +33,10 @@ export class AppraisalSheetService {
 
   public getAllAppraisalSheets(): Observable<AppraisalSheet[]> {
     return this.http.get<AppraisalSheet[]>(this.URL_GET_APPRAISAL_SHEET);
+  }
+
+  public lockAppraisalSheet(appSheet: AppraisalSheet) {
+    return this.http.post(this.URL_LOCK_APPRAISAL_SHEET, appSheet);
   }
 
 }

@@ -31,8 +31,10 @@
           Unlocked
         </ng-template>
         <td>
-          <button class="btn btn-primary" (click)="editDocument(appraisalSheet)">Edit</button>
+          <button class="btn btn-primary" *ngIf="showEditButton" (click)="editDocument(appraisalSheet)">Edit</button>
           <button id="documentId" class="btn btn-primary" (click)="openDocument(appraisalSheet)">Info</button>
+          <button class="btn btn-danger" *ngIf="showUnlockButton" (click)="unlockDocument(appraisalSheet)">Unlock
+          </button>
         </td>
       </tr>
       </tbody>

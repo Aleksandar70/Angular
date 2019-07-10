@@ -16,13 +16,20 @@ export class ArchivePageComponent implements OnInit {
   searchText;
   showSpinner = true;
   loggedInUser: User;
-  editField: string;
+  showEditButton = true;
+  showUnlockButton = true;
+
   @ViewChild('content') content: ElementRef;
 
   constructor(private router: Router, private appraisalSheetService: AppraisalSheetService, private userService: UserService) {
   }
 
   ngOnInit() {
+    if (this.userService.getUserRole() === 'Admin') {
+      this.showEditButton = false;
+    } else if (this.userService.getUserRole() !== 'Admin') {
+      this.showUnlockButton = false;
+    }
     this.appraisalSheetService.getAllAppraisalSheetsForUser(this.userService.getLoggedInUser()).subscribe(data => {
       this.appraisalSheets = data;
     });
@@ -34,15 +41,15 @@ export class ArchivePageComponent implements OnInit {
     );
   }
 
-  updateList(id: number, property: string, event: any) {
-    const editField = event.target.textContent;
-    this.appraisalSheets[id][property] = editField;
-  }
-
-
-  changeValue(id: number, property: string, event: any) {
-    this.editField = event.target.textContent;
-  }
+  // updateList(id: number, property: string, event: any) {
+  //   const editField = event.target.textContent;
+  //   this.appraisalSheets[id][property] = editField;
+  // }
+  //
+  //
+  // changeValue(id: number, property: string, event: any) {
+  //   this.editField = event.target.textContent;
+  // }
 
   openDocument(appraisalSheet: AppraisalSheet) {
     this.router.navigate(['document-info'], {state: {sheet: appraisalSheet}});
@@ -52,5 +59,11 @@ export class ArchivePageComponent implements OnInit {
     if (!appraisalSheet.locked) {
       this.router.navigate(['project-evaluation'], {state: {sheet: appraisalSheet}});
     }
+  }
+
+  unlockDocument(appraisalSheet: AppraisalSheet) {
+    appraisalSheet.locked = false;
+    this.appraisalSheetService.lockAppraisalSheet(appraisalSheet).subscribe(data => {
+    });
   }
 }
