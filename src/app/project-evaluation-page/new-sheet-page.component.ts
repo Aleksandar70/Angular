@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LoginService} from '../service/login.service';
 import {Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
@@ -63,7 +63,6 @@ export class NewSheetPageComponent implements OnInit {
     if (this.appSheet != null) {
       appSheetId = this.appSheet.appraisalSheetID;
     }
-    console.log('Locked' + this.locked);
     if (this.locked) {
       this.ngFlashMessageService.showFlashMessage({
         messages: ['Document is locked!'],

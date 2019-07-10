@@ -3,7 +3,6 @@ import {UserGroupService} from '../../service/user-group.service';
 import {NgForm} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserGroup} from '../../model/userGroup';
-import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-user-group',
@@ -13,7 +12,6 @@ import {Subscription} from 'rxjs';
 })
 export class UserGroupComponent implements OnInit {
   @ViewChild('userGroupForm') userGroupForm: NgForm;
-  subscription: Subscription;
   userGroup: UserGroup[];
 
   constructor(private route: ActivatedRoute, private router: Router, private userGroupService: UserGroupService) {
@@ -37,18 +35,5 @@ export class UserGroupComponent implements OnInit {
       );
     }
     form.reset();
-  }
-
-  // onDeleteUserGroup() {
-  //   this.userGroupService.deleteUserGroup();
-  // }
-
-  onDelete() {
-    // this.userGroupService.deleteUserGroup(this.userGroupId);
-    this.onClear();
-  }
-
-  onClear() {
-    this.userGroupForm.reset();
   }
 }

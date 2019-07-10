@@ -36,8 +36,6 @@ export class UserComponent implements OnInit {
     this.userForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      // userGroup: ['', Validators.required],
-      // userManager: ['', Validators.required],
       username: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
@@ -56,7 +54,6 @@ export class UserComponent implements OnInit {
       this.users = data;
       const filteredUser = this.users.filter(user => user.username === this.formControls.username.value);
       if (filteredUser.length !== 0) {
-        console.log('USAO');
         this.ngFlashMessageService.showFlashMessage({
           messages: ['Username already exists!'],
           dismissible: true,

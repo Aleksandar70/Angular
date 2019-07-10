@@ -26,7 +26,6 @@ import {AuthGuard} from './service/auth.guard';
 import {AuthService} from './service/authentication.service';
 import {ShowUsersComponent} from './show-users/show-users.component';
 import {SortDirective} from './directives/SortDirective';
-import {FooterComponent} from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -42,8 +41,7 @@ import {FooterComponent} from './footer/footer.component';
     LoadingSpinnerComponent,
     AppraisalPageInfoComponent,
     ShowUsersComponent,
-    SortDirective,
-    FooterComponent
+    SortDirective
   ],
   imports: [
     BrowserModule,

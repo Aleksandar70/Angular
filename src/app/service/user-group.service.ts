@@ -9,7 +9,6 @@ export class UserGroupService {
 
   public ADD_GET_USER_GROUP: string;
   public GET_USER_MANAGERS: string;
-  userGroups: Observable<UserGroup[]>;
   user;
 
   constructor(private http: HttpClient) {
@@ -29,10 +28,5 @@ export class UserGroupService {
 
   public getUserManagers(): Observable<UserManager []> {
     return this.http.get <UserManager[]>(this.GET_USER_MANAGERS);
-  }
-
-  public deleteUserGroup(index: number) {
-    this.userGroups = this.getUserGroups();
-    // return this.http.delete();
   }
 }

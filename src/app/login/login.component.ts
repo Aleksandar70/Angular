@@ -18,8 +18,6 @@ export class LoginComponent implements OnInit {
   user: User;
   id: string;
 
-  // public currentUser: Observable<User>;
-
   constructor(private formBuilder: FormBuilder,
               private router: Router,
               private route: ActivatedRoute,
@@ -67,7 +65,6 @@ export class LoginComponent implements OnInit {
   }
 
   logout(): void {
-    console.log('Logout');
     this.authService.logout();
     this.router.navigate(['/login']);
   }

@@ -41,16 +41,6 @@ export class ArchivePageComponent implements OnInit {
     );
   }
 
-  // updateList(id: number, property: string, event: any) {
-  //   const editField = event.target.textContent;
-  //   this.appraisalSheets[id][property] = editField;
-  // }
-  //
-  //
-  // changeValue(id: number, property: string, event: any) {
-  //   this.editField = event.target.textContent;
-  // }
-
   openDocument(appraisalSheet: AppraisalSheet) {
     this.router.navigate(['document-info'], {state: {sheet: appraisalSheet}});
   }

@@ -27,9 +27,9 @@ export class AppraisalSheetService {
     return this.http.get<AppraisalSheet []>(this.URL_ARCHIVE_PAGE, {params: params});
   }
 
-  public getAppraisalSheetById(employeeName: string): Observable<AppraisalSheet> {
-    return this.http.get<AppraisalSheet>(this.URL_GET_APPRAISAL_SHEET);
-  }
+  // public getAppraisalSheetById(employeeName: string): Observable<AppraisalSheet> {
+  //   return this.http.get<AppraisalSheet>(this.URL_GET_APPRAISAL_SHEET);
+  // }
 
   public getAllAppraisalSheets(): Observable<AppraisalSheet[]> {
     return this.http.get<AppraisalSheet[]>(this.URL_GET_APPRAISAL_SHEET);
