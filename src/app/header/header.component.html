@@ -1,15 +1,20 @@
-<div class="row">
-  <div class="col-xs-2 pull-right">
-    <img src="assets/img/Document_Management_Logo.png" class="img-responsive"
-         (click)="redirectToHomePage('/home')"/>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <img (click)="redirectToHomePage('/home')" alt="Brand" src="assets/img/Document_Management_Logo.png"
+           style="height: 30px; width: 100px; margin: 10px">
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a>Hi, {{firstName}}</a></li>
+        <li><a (click)="logout()">Logout</a></li>
+      </ul>
+    </div>
   </div>
-</div>
+</nav>
 <ol class="breadcrumb">
   <li><a (click)="goToHomePage()">Home page</a></li>
   <li *ngIf="showAdminPageNavigation"><a (click)="goToAdminPage()">Admin page</a></li>
   <li *ngIf="showUserPageNavigation"><a (click)="goToArchivePage()">Archive page</a></li>
   <li><a class="active">{{route}}</a></li>
-  <span class="align-right">
-  <a (click)="logout()">Logout</a>
-  </span>
 </ol>

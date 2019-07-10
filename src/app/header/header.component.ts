@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
   public route = '';
   showAdminPageNavigation = false;
   showUserPageNavigation = false;
+  firstName;
 
   constructor(private router: Router, private userService: UserService, location: Location, private authService: AuthService) {
     router.events.subscribe(val => {
@@ -47,6 +48,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getFirstName();
   }
 
   redirectToHomePage(pageName: string) {
@@ -70,5 +72,9 @@ export class HeaderComponent implements OnInit {
 
   goToArchivePage() {
     this.router.navigate(['archive-page']);
+  }
+
+  getFirstName() {
+    this.firstName = this.userService.getNameOfUser().split(' ')[0];
   }
 }

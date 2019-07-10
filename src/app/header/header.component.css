@@ -15,3 +15,11 @@ span.align-right {
 a {
   font-size: 120%;
 }
+
+.breadcrumb li {
+  display: inline;
+}
+
+.breadcrumb {
+  background-color: white;
+}
