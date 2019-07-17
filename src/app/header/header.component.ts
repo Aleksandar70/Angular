@@ -48,7 +48,9 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getFirstName();
+    if (this.userService.getNameOfUser() !== null) {
+      this.getFirstName();
+    }
   }
 
   redirectToHomePage(pageName: string) {
