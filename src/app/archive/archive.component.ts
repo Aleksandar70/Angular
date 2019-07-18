@@ -1,18 +1,18 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
-import {AppraisalSheetService} from '../service/appraisal-sheet.service';
-import {AppraisalSheet} from '../model/appraisal-sheet';
+import {ProjectEvaluationService} from '../service/project-evaluation.service';
+import {ProjectEvaluation} from '../model/project-evaluation';
 import {User} from '../model/user';
 import {UserService} from '../service/user.service';
 
 @Component({
-  selector: 'app-archive-page',
-  templateUrl: './archive-page.component.html',
-  styleUrls: ['./archive-page.component.css']
+  selector: 'app-archive',
+  templateUrl: './archive.component.html',
+  styleUrls: ['./archive.component.css']
 })
 
-export class ArchivePageComponent implements OnInit {
-  appraisalSheets: AppraisalSheet[];
+export class ArchiveComponent implements OnInit {
+  appraisalSheets: ProjectEvaluation[];
   searchText;
   showSpinner = true;
   loggedInUser: User;
@@ -21,7 +21,7 @@ export class ArchivePageComponent implements OnInit {
 
   @ViewChild('content') content: ElementRef;
 
-  constructor(private router: Router, private appraisalSheetService: AppraisalSheetService, private userService: UserService) {
+  constructor(private router: Router, private appraisalSheetService: ProjectEvaluationService, private userService: UserService) {
   }
 
   ngOnInit() {
@@ -41,17 +41,17 @@ export class ArchivePageComponent implements OnInit {
     );
   }
 
-  openDocument(appraisalSheet: AppraisalSheet) {
+  openDocument(appraisalSheet: ProjectEvaluation) {
     this.router.navigate(['document-info'], {state: {sheet: appraisalSheet}});
   }
 
-  editDocument(appraisalSheet: AppraisalSheet) {
+  editDocument(appraisalSheet: ProjectEvaluation) {
     if (!appraisalSheet.locked) {
       this.router.navigate(['project-evaluation'], {state: {sheet: appraisalSheet}});
     }
   }
 
-  unlockDocument(appraisalSheet: AppraisalSheet) {
+  unlockDocument(appraisalSheet: ProjectEvaluation) {
     appraisalSheet.locked = false;
     this.appraisalSheetService.lockAppraisalSheet(appraisalSheet).subscribe(data => {
     });

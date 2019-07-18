@@ -2,33 +2,33 @@ import {Component, OnInit} from '@angular/core';
 import {LoginService} from '../service/login.service';
 import {Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
-import {AppraisalSheetService} from '../service/appraisal-sheet.service';
-import {AppraisalSheet} from '../model/appraisal-sheet';
+import {ProjectEvaluationService} from '../service/project-evaluation.service';
+import {ProjectEvaluation} from '../model/project-evaluation';
 import {NgFlashMessageService} from 'ng-flash-messages';
 import {UserService} from '../service/user.service';
 
 @Component({
-  selector: 'app-new-sheet-page',
-  templateUrl: './new-sheet-page.component.html',
-  styleUrls: ['./new-sheet-page.component.css']
+  selector: 'app-project-evaluation',
+  templateUrl: './project-evaluation.component.html',
+  styleUrls: ['./project-evaluation.component.css']
 })
-export class NewSheetPageComponent implements OnInit {
+export class ProjectEvaluationComponent implements OnInit {
 
   role: string;
   showEmployeemanager = false;
   showEmployee = false;
-  appSheet: AppraisalSheet;
+  appSheet: ProjectEvaluation;
   loggedInUser: string;
   userManager: string;
   username: string;
   disabledValue = false;
   year;
-  appSheets: AppraisalSheet[];
+  appSheets: ProjectEvaluation[];
   locked = false;
   enable = false;
-  appraisalSheet: AppraisalSheet;
+  appraisalSheet: ProjectEvaluation;
 
-  constructor(private loginService: LoginService, private router: Router, private appraisalSheetService: AppraisalSheetService,
+  constructor(private loginService: LoginService, private router: Router, private appraisalSheetService: ProjectEvaluationService,
               private ngFlashMessageService: NgFlashMessageService, private userService: UserService) {
     if (typeof this.router.getCurrentNavigation().extras.state === 'undefined') {
       this.appraisalSheet = window.history.state;
@@ -53,6 +53,12 @@ export class NewSheetPageComponent implements OnInit {
         const filteredAppSheet = this.appSheets.find(ob => ob.user.username === this.username);
         if (typeof filteredAppSheet !== 'undefined' && this.appSheets.find(ob => ob.user.username === this.username).locked) {
           this.enable = true;
+          this.ngFlashMessageService.showFlashMessage({
+            messages: ['Your document is locked and already created for this year!'],
+            dismissible: true,
+            timeout: false,
+            type: 'danger'
+          });
         }
       }
     );
@@ -83,7 +89,7 @@ export class NewSheetPageComponent implements OnInit {
   addAppraisalSheet() {
     this.appraisalSheetService.addAppraisalSheet(this.appSheet).subscribe(
       result => {
-        const savedAppSheet = result as AppraisalSheet;
+        const savedAppSheet = result as ProjectEvaluation;
         if (savedAppSheet != null) {
           this.appSheet.appraisalSheetID = savedAppSheet.appraisalSheetID;
           this.appSheet.user = savedAppSheet.user;
@@ -127,7 +133,7 @@ export class NewSheetPageComponent implements OnInit {
       this.appraisalSheetService.getAllAppraisalSheets().subscribe(data => {
         this.appSheets = data;
         const filteredAppSheet = this.appSheets.find(ob => ob.user.username === this.username);
-        if (this.appSheet.appraisalPeriod.startsWith((new Date()).getFullYear().toString())
+        if (filteredAppSheet !== null && this.appSheet.appraisalPeriod.startsWith((new Date()).getFullYear().toString())
           && typeof filteredAppSheet !== 'undefined' && this.appSheets.find(ob => ob.user.username === this.username).locked) {
           this.ngFlashMessageService.showFlashMessage({
             messages: ['Your document is locked and already created for this year!'],
@@ -147,7 +153,7 @@ export class NewSheetPageComponent implements OnInit {
     this.locked = true;
     this.appraisalSheetService.addAppraisalSheet(this.appSheet).subscribe(
       result => {
-        const savedAppSheet = result as AppraisalSheet;
+        const savedAppSheet = result as ProjectEvaluation;
         if (savedAppSheet != null) {
           this.appSheet.appraisalSheetID = savedAppSheet.appraisalSheetID;
           this.appSheet.user = savedAppSheet.user;
@@ -172,20 +178,20 @@ export class NewSheetPageComponent implements OnInit {
 
   private instantiateAppSheet(form: NgForm) {
     const formValue = form.value;
-    this.appSheet = new AppraisalSheet(this.loggedInUser, formValue.division, formValue.careerLevel,
-      this.year, this.userManager, formValue.tasksBackdated, formValue.teamLeadFeedback, formValue.companyFeedback,
-      formValue.targetsBackdated, formValue.roleRequirements, formValue.selfCompetence, formValue.socialCompetence,
-      formValue.methodicalCompetence, formValue.roleRequirementsGoals, formValue.selfCompetenceGoals, formValue.companyOrientedGoals,
-      formValue.economicGoal, formValue.developmentObjectives, formValue.developmentPotential, formValue.employeeExpectations);
+    this.appSheet = new ProjectEvaluation(this.loggedInUser, formValue.projectName, formValue.careerLevel,
+      this.year, this.userManager, formValue.financialSituation, formValue.tasksDifficult, formValue.scope,
+      formValue.functionalSpecification, formValue.hardToFollow, formValue.independent, formValue.suggestions,
+      formValue.projectInFiveMonths, formValue.obstacles, formValue.best_sides_highlights, formValue.humanResources,
+      formValue.peopleSatisfaction, formValue.feedbackFromClient, formValue.improvingProcess, formValue.time);
   }
 
   private instantiateAppSheetAndLock(form: NgForm) {
     const formValue = form.value;
-    this.appSheet = new AppraisalSheet(this.loggedInUser, formValue.division, formValue.careerLevel,
-      this.year, this.userManager, formValue.tasksBackdated, formValue.teamLeadFeedback, formValue.companyFeedback,
-      formValue.targetsBackdated, formValue.roleRequirements, formValue.selfCompetence, formValue.socialCompetence,
-      formValue.methodicalCompetence, formValue.roleRequirementsGoals, formValue.selfCompetenceGoals, formValue.companyOrientedGoals,
-      formValue.economicGoal, formValue.developmentObjectives, formValue.developmentPotential, formValue.employeeExpectations);
+    this.appSheet = new ProjectEvaluation(this.loggedInUser, formValue.projectName, formValue.careerLevel,
+      this.year, this.userManager, formValue.financialSituation, formValue.tasksDifficult, formValue.scope,
+      formValue.functionalSpecification, formValue.hardToFollow, formValue.independent, formValue.suggestions,
+      formValue.projectInFiveMonths, formValue.obstacles, formValue.best_sides_highlights, formValue.humanResources,
+      formValue.peopleSatisfaction, formValue.feedbackFromClient, formValue.improvingProcess, formValue.time);
     this.appSheet.lockAppSheet();
   }
 }

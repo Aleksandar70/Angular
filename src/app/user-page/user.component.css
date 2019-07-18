@@ -28,3 +28,7 @@
 .active {
   font-weight: bold;
 }
+
+#firstNameError, #lastNameError, #usernameError, #passwordError, #CharactersError, #emailError {
+  color: red;
+}

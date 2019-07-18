@@ -70,4 +70,12 @@ export class UserService {
     const username = user.username;
     return this.http.delete(`${this.URL_DELETE_USER}/${username}`, {headers: this.headers});
   }
+
+  getisLoggedIn() {
+    return sessionStorage.getItem('isLoggedIn');
+  }
+
+  setIsLoggedIn(value: string) {
+    sessionStorage.setItem('isLoggedIn', value);
+  }
 }

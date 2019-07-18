@@ -3,11 +3,11 @@ import {Router} from '@angular/router';
 import {UserService} from '../service/user.service';
 
 @Component({
-  selector: 'app-appraisal-page',
-  templateUrl: './appraisal-page.component.html',
-  styleUrls: ['./appraisal-page.component.css']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
-export class AppraisalPageComponent implements OnInit {
+export class HomeComponent implements OnInit {
   role: string;
   showAdminPage = false;
   showEvaluateProject = false;
@@ -25,7 +25,7 @@ export class AppraisalPageComponent implements OnInit {
   }
 
   onAdminPage() {
-    this.router.navigate(['admin-page']);
+    this.router.navigate(['admin']);
   }
 
   onNewSheet() {
@@ -33,6 +33,6 @@ export class AppraisalPageComponent implements OnInit {
   }
 
   onArchive() {
-    this.router.navigate(['archive-page']);
+    this.router.navigate(['archive']);
   }
 }

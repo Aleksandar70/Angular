@@ -5,7 +5,7 @@ import {LoginService} from '../service/login.service';
 import {NgFlashMessageService} from 'ng-flash-messages';
 import {User} from '../model/user';
 import {UserService} from '../service/user.service';
-import {AuthService} from '../service/authentication.service';
+import {AuthService} from '../auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -60,11 +60,14 @@ export class LoginComponent implements OnInit {
         });
       },
       () => {
+        this.userService.setIsLoggedIn('true');
+        this.authService.setLoggedIn(true);
         this.router.navigate(['/home']);
       });
   }
 
   logout(): void {
+    this.userService.setIsLoggedIn('false');
     this.authService.logout();
     this.router.navigate(['/login']);
   }

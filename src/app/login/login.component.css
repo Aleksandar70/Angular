@@ -24,3 +24,7 @@
 .pull-right {
   padding: 1.5%;
 }
+
+#usernameError, #passwordError, #emailError {
+  color: red;
+}

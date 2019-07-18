@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {UserService} from '../service/user.service';
 import {Location} from '@angular/common';
-import {AuthService} from '../service/authentication.service';
+import {AuthService} from '../auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -60,7 +60,8 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(): void {
-    this.authService.logout();
+    // this.authService.logout();
+    this.userService.setIsLoggedIn('false');
     this.router.navigate(['/login']);
   }
 
@@ -69,11 +70,11 @@ export class HeaderComponent implements OnInit {
   }
 
   goToAdminPage() {
-    this.router.navigate(['admin-page']);
+    this.router.navigate(['admin']);
   }
 
   goToArchivePage() {
-    this.router.navigate(['archive-page']);
+    this.router.navigate(['archive']);
   }
 
   getFirstName() {

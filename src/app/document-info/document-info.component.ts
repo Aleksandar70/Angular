@@ -1,15 +1,15 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {AppraisalSheet} from '../model/appraisal-sheet';
+import {ProjectEvaluation} from '../model/project-evaluation';
 import {Router} from '@angular/router';
 import * as jsPDF from 'jspdf';
 
 @Component({
-  selector: 'app-appraisal-page-info',
-  templateUrl: './appraisal-page-info.component.html',
-  styleUrls: ['./appraisal-page-info.component.css']
+  selector: 'app-document-info',
+  templateUrl: './document-info.component.html',
+  styleUrls: ['./document-info.component.css']
 })
-export class AppraisalPageInfoComponent implements OnInit {
-  appraisalSheet: AppraisalSheet;
+export class DocumentInfoComponent implements OnInit {
+  appraisalSheet: ProjectEvaluation;
 
   @ViewChild('sheetContent') sheetContent: ElementRef;
 
@@ -36,6 +36,9 @@ export class AppraisalPageInfoComponent implements OnInit {
       'width': 190,
       'elementHandlers': specialElementHandlers
     });
-    doc.save('projectEvaluation' + this.appraisalSheet.employeeName.replace(' ', '') + '.pdf');
+    doc.save('Evaluation' +
+      this.appraisalSheet.projectName.replace(' ', '') +
+      this.appraisalSheet.employeeName.replace(' ', '') +
+      '.pdf');
   }
 }

@@ -6,7 +6,7 @@
       <input type="text" formControlName="firstName" class="form-control"
              [ngClass]="{ 'is-invalid': submitted && formControls.firstName.errors }"/>
       <div *ngIf="submitted && formControls.firstName.errors" class="invalid-feedback">
-        <div *ngIf="formControls.firstName.errors.required">First name is required</div>
+        <div id="firstNameError" *ngIf="formControls.firstName.errors.required">First name is required</div>
       </div>
     </div>
     <div class="form-group">
@@ -14,7 +14,7 @@
       <input type="text" formControlName="lastName" class="form-control"
              [ngClass]="{ 'is-invalid': submitted && formControls.lastName.errors }"/>
       <div *ngIf="submitted && formControls.lastName.errors" class="invalid-feedback">
-        <div *ngIf="formControls.lastName.errors.required">Last name is required</div>
+        <div id="lastNameError" *ngIf="formControls.lastName.errors.required">Last name is required</div>
       </div>
     </div>
     <div class="form-group">
@@ -22,8 +22,9 @@
       <input type="text" formControlName="username" class="form-control"
              [ngClass]="{ 'is-invalid': submitted && formControls.username.errors }"/>
       <div *ngIf="submitted && formControls.username.errors" class="invalid-feedback">
-        <div *ngIf="formControls.username.errors.required">Username is required</div>
-        <div *ngIf="formControls.username.errors.email">Username must be a valid email address</div>
+        <div id="usernameError" *ngIf="formControls.username.errors.required">Username is required</div>
+        <div id="emailError" *ngIf="formControls.username.errors.email">Username must be a valid email address
+        </div>
       </div>
     </div>
     <div class="form-group">
@@ -31,9 +32,9 @@
       <input type="password" formControlName="password" class="form-control"
              [ngClass]="{ 'is-invalid': submitted && formControls.password.errors }"/>
       <div *ngIf="submitted && formControls.password.errors" class="invalid-feedback">
-        <div *ngIf="formControls.password.errors.required">Password is required</div>
+        <div id="passwordError" *ngIf="formControls.password.errors.required">Password is required</div>
       </div>
-      <div *ngIf="formControls.password.errors?.minlength">
+      <div id="CharactersError" *ngIf="formControls.password.errors?.minlength">
         Six characters minimum
       </div>
     </div>
