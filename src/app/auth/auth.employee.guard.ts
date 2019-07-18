@@ -13,7 +13,7 @@ export class EmployeeGuard implements CanActivate {
   }
 
   canActivate(): Observable<boolean> | Promise<boolean> | boolean {
-    if (this.userService.getUserRole() === 'Employee' || this.userService.getUserRole() === 'Employee manager') {
+    if (this.userService.getUserRole() === 'Employee' || this.userService.getUserRole() === 'Project manager') {
       return true;
     }
     this.router.navigate(['/']);

@@ -43,7 +43,7 @@ export class ProjectEvaluationComponent implements OnInit {
     this.loggedInUser = this.userService.getNameOfUser();
     this.userManager = this.userService.getUserManager();
     this.username = this.userService.getLoggedInUser();
-    if (this.role === 'Employee manager') {
+    if (this.role === 'Project manager') {
       this.showEmployeemanager = true;
     } else if (this.role === 'Employee') {
       this.showEmployee = true;
