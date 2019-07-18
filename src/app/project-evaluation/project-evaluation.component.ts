@@ -94,7 +94,8 @@ export class ProjectEvaluationComponent implements OnInit {
           this.appSheet.appraisalSheetID = savedAppSheet.appraisalSheetID;
           this.appSheet.user = savedAppSheet.user;
         }
-        if (this.appSheets.find(ob => ob.user.username === this.username).locked) {
+        console.log('App sheets :' + this.appSheets);
+        if (this.appSheets.length > 0 && this.appSheets.find(ob => ob.user.username === this.username).locked) {
           this.ngFlashMessageService.showFlashMessage({
             messages: ['Document is locked!'],
             dismissible: true,
