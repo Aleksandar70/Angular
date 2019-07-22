@@ -27,10 +27,6 @@ export class ProjectEvaluationService {
     return this.http.get<ProjectEvaluation []>(this.URL_ARCHIVE_PAGE, {params: params});
   }
 
-  // public getAppraisalSheetById(employeeName: string): Observable<ProjectEvaluation> {
-  //   return this.http.get<ProjectEvaluation>(this.URL_GET_APPRAISAL_SHEET);
-  // }
-
   public getAllAppraisalSheets(): Observable<ProjectEvaluation[]> {
     return this.http.get<ProjectEvaluation[]>(this.URL_GET_APPRAISAL_SHEET);
   }

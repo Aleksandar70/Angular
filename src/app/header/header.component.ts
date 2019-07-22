@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {UserService} from '../service/user.service';
 import {Location} from '@angular/common';
-import {AuthService} from '../auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -16,13 +15,13 @@ export class HeaderComponent implements OnInit {
   showUserPageNavigation = false;
   firstName;
 
-  constructor(private router: Router, private userService: UserService, location: Location, private authService: AuthService) {
+  constructor(private router: Router, private userService: UserService, location: Location) {
     router.events.subscribe(val => {
       this.route = location.path().substr(1).split('-')[0].charAt(0).toUpperCase() + location.path().substr(1).split('-')[0].slice(1)
         + ' ' + location.path().substr(1).split('-')[1];
       if (this.route.startsWith('All users')
         || this.route.startsWith('New user')
-        || this.route.startsWith('UserDto group')
+        || this.route.startsWith('User group')
         || this.route.startsWith('Admin page')) {
         this.showAdminPageNavigation = true;
       }
@@ -60,7 +59,6 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(): void {
-    // this.authService.logout();
     this.userService.setIsLoggedIn('false');
     this.router.navigate(['/login']);
   }

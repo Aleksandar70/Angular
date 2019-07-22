@@ -49,8 +49,7 @@ export class ProjectEvaluationComponent implements OnInit {
       this.showEmployee = true;
     }
     this.appraisalSheetService.getAllAppraisalSheets().subscribe(data => {
-        this.projectEvaluations = data;
-        console.log('App: ' + this.projectEvaluations);
+        this.projectEvaluations = data;;
         const filteredAppSheet = this.projectEvaluations.find(ob => ob.userDto.username === this.username);
         if (typeof filteredAppSheet !== 'undefined' && this.projectEvaluations.find(ob => ob.userDto.username === this.username).locked) {
           this.enable = true;
@@ -95,7 +94,6 @@ export class ProjectEvaluationComponent implements OnInit {
           this.projectEvaluation1.projectEvaluationID = savedAppSheet.projectEvaluationID;
           this.projectEvaluation1.userDto = savedAppSheet.userDto;
         }
-        console.log('App sheets :' + this.projectEvaluations);
         if (this.projectEvaluations.length > 0
           && typeof this.projectEvaluations.find(ob => ob.userDto.username === this.username) !== 'undefined'
           && this.projectEvaluations.find(ob => ob.userDto.username === this.username).locked) {
