@@ -18,7 +18,7 @@
       <tr>
         <th>No.</th>
         <th>Name</th>
-        <th sortColumn [sortKey]="'userGroup'" [users]="users">Role</th>
+        <th sortColumn [sortKey]="'userGroupDto'" [users]="users">Role</th>
         <th>Action</th>
       </tr>
       </thead>
@@ -26,7 +26,7 @@
       <tr *ngFor="let user of users | filter:searchText;let i=index;">
         <td>{{i + 1}}</td>
         <td>{{user.firstName + " " + user.lastName}}</td>
-        <td>{{user.userGroup.name}}</td>
+        <td>{{user.userGroupDto.name}}</td>
         <td>
           <button class="btn btn-danger" (click)="deleteUser(user)">Delete</button>
         </td>

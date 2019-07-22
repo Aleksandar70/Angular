@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {User} from '../model/user';
+import {UserDto} from '../model/userDto';
 import {Router} from '@angular/router';
 import {UserService} from '../service/user.service';
 import {NgFlashMessageService} from 'ng-flash-messages';
@@ -10,10 +10,10 @@ import {NgFlashMessageService} from 'ng-flash-messages';
   styleUrls: ['./show-users.component.css']
 })
 export class ShowUsersComponent implements OnInit {
-  users: User[];
+  users: UserDto[];
   searchText;
   showSpinner = true;
-  loggedInUser: User;
+  loggedInUser: UserDto;
   @ViewChild('content') content: ElementRef;
 
   constructor(private router: Router, private userService: UserService, private ngFlashMessageService: NgFlashMessageService) {
@@ -31,8 +31,8 @@ export class ShowUsersComponent implements OnInit {
     );
   }
 
-  deleteUser(user: User) {
-    this.userService.deleteUser(user).subscribe(data => {
+  deleteUser(userDto: UserDto) {
+    this.userService.deleteUser(userDto).subscribe(data => {
       this.ngFlashMessageService.showFlashMessage({
         messages: ['User successfully removed!'],
         dismissible: true,
@@ -40,6 +40,6 @@ export class ShowUsersComponent implements OnInit {
         type: 'success'
       });
     });
-    this.users = this.users.filter(item => item.username !== user.username);
+    this.users = this.users.filter(item => item.username !== userDto.username);
   }
 }

@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../service/user.service';
-import {UserGroup} from '../model/userGroup';
+import {UserGroupDto} from '../model/userGroupDto';
 import {UserGroupService} from '../service/user-group.service';
 import {Router} from '@angular/router';
 import {NgFlashMessageService} from 'ng-flash-messages';
-import {UserManager} from '../model/user-manager';
-import {User} from '../model/user';
+import {UserManagerDto} from '../model/user-manager';
+import {UserDto} from '../model/userDto';
 
 @Component({
   selector: 'app-user',
@@ -16,12 +16,12 @@ import {User} from '../model/user';
 export class UserComponent implements OnInit {
   userForm: FormGroup;
   submitted = false;
-  userGroups: UserGroup[] = [];
-  userGroup: UserGroup;
+  userGroups: UserGroupDto[] = [];
+  userGroupDto: UserGroupDto;
   selectedUserGroup;
-  userManagers: UserManager[] = [];
+  userManagers: UserManagerDto[] = [];
   selectedUserManager;
-  users: User[];
+  users: UserDto[];
 
   constructor(private router: Router,
               private formBuilder: FormBuilder,

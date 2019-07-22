@@ -1,28 +1,28 @@
-import {UserGroup} from './userGroup';
-import {UserManager} from './user-manager';
+import {UserGroupDto} from './userGroupDto';
+import {UserManagerDto} from './user-manager';
 
-export class User {
+export class UserDto {
   firstName: string;
   lastName: string;
   username: string;
   password: string;
-  userGroup: UserGroup;
-  userManager: UserManager;
+  userGroupDto: UserGroupDto;
+  userManagerDto: UserManagerDto;
   token: string;
 
   constructor(username: string,
               password: string,
-              userGroup?: UserGroup,
+              userGroup?: UserGroupDto,
               firstName?: string,
               lastName?: string,
-              userManager?: UserManager,
+              userManagerDto?: UserManagerDto,
               token?: string) {
     this.username = username;
     this.password = password;
     this.firstName = firstName;
     this.lastName = lastName;
-    this.userGroup = userGroup;
-    this.userManager = userManager;
+    this.userGroupDto = userGroup;
+    this.userManagerDto = userManagerDto;
     this.token = token;
   }
 }

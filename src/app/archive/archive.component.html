@@ -22,17 +22,17 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let appraisalSheet of appraisalSheets | filter:searchText;  let i = index;">
+      <tr *ngFor="let projectEvaluation of projectEvaluations | filter:searchText;  let i = index;">
         <td>{{i + 1}}</td>
-        <td>{{appraisalSheet.employeeName + "_" + appraisalSheet.date}}</td>
-        <td><span *ngIf="appraisalSheet.locked == true; else statusUnlocked">Locked</span></td>
+        <td>{{projectEvaluation.employeeName + "_" + projectEvaluation.date.substring(0, 10)}}</td>
+        <td><span *ngIf="projectEvaluation.locked == true; else statusUnlocked">Locked</span></td>
         <ng-template #statusUnlocked>
           Unlocked
         </ng-template>
         <td>
-          <button class="btn btn-primary" *ngIf="showEditButton" (click)="editDocument(appraisalSheet)">Edit</button>
-          <button id="documentId" class="btn btn-primary" (click)="openDocument(appraisalSheet)">Info</button>
-          <button class="btn btn-danger" *ngIf="showUnlockButton" (click)="unlockDocument(appraisalSheet)">Unlock
+          <button class="btn btn-primary" *ngIf="showEditButton" (click)="editDocument(projectEvaluation)">Edit</button>
+          <button id="documentId" class="btn btn-primary" (click)="openDocument(projectEvaluation)">Info</button>
+          <button class="btn btn-danger" *ngIf="showUnlockButton" (click)="unlockDocument(projectEvaluation)">Unlock
           </button>
         </td>
       </tr>

@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {LoginService} from '../service/login.service';
 import {NgFlashMessageService} from 'ng-flash-messages';
-import {User} from '../model/user';
+import {UserDto} from '../model/userDto';
 import {UserService} from '../service/user.service';
 import {AuthService} from '../auth/auth.service';
 
@@ -15,7 +15,7 @@ import {AuthService} from '../auth/auth.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
-  user: User;
+  user: UserDto;
   id: string;
 
   constructor(private formBuilder: FormBuilder,
@@ -47,8 +47,8 @@ export class LoginComponent implements OnInit {
     this.loginService.loginUser(this.formControls.username.value, this.formControls.password.value).subscribe(result => {
         this.userService.setLoggedInUser(result['user']['username']);
         this.userService.setNameOfUser(result['user']['firstName'] + ' ' + result['user']['lastName']);
-        this.userService.setUserManager(result['user']['userManager']['name']);
-        this.userService.setUserRole(result['user']['userGroup']['name']);
+        this.userService.setUserManager(result['user']['userManagerDto']['name']);
+        this.userService.setUserRole(result['user']['userGroupDto']['name']);
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('token', result['token']);
       }, error => {

@@ -9,15 +9,15 @@ import * as jsPDF from 'jspdf';
   styleUrls: ['./document-info.component.css']
 })
 export class DocumentInfoComponent implements OnInit {
-  appraisalSheet: ProjectEvaluation;
+  projectEvaluation: ProjectEvaluation;
 
   @ViewChild('sheetContent') sheetContent: ElementRef;
 
   constructor(private router: Router) {
     if (typeof this.router.getCurrentNavigation().extras.state === 'undefined') {
-      this.appraisalSheet = window.history.state;
+      this.projectEvaluation = window.history.state;
     } else {
-      this.appraisalSheet = this.router.getCurrentNavigation().extras.state.sheet;
+      this.projectEvaluation = this.router.getCurrentNavigation().extras.state.sheet;
     }
   }
 
@@ -37,8 +37,8 @@ export class DocumentInfoComponent implements OnInit {
       'elementHandlers': specialElementHandlers
     });
     doc.save('Evaluation' +
-      this.appraisalSheet.projectName.replace(' ', '') +
-      this.appraisalSheet.employeeName.replace(' ', '') +
+      this.projectEvaluation.projectName.replace(' ', '') +
+      this.projectEvaluation.employeeName.replace(' ', '') +
       '.pdf');
   }
 }

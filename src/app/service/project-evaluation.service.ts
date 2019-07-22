@@ -17,8 +17,8 @@ export class ProjectEvaluationService {
     this.URL_LOCK_APPRAISAL_SHEET = 'http://localhost:8080/lock-appraisal-sheet';
   }
 
-  public addAppraisalSheet(appSheet: ProjectEvaluation) {
-    return this.http.post(this.URL_ADD_APPRAISAL_SHEET, appSheet);
+  public addAppraisalSheet(projectEvaluation: ProjectEvaluation) {
+    return this.http.post(this.URL_ADD_APPRAISAL_SHEET, projectEvaluation);
   }
 
   public getAllAppraisalSheetsForUser(username: string): Observable<ProjectEvaluation []> {
@@ -35,8 +35,8 @@ export class ProjectEvaluationService {
     return this.http.get<ProjectEvaluation[]>(this.URL_GET_APPRAISAL_SHEET);
   }
 
-  public lockAppraisalSheet(appSheet: ProjectEvaluation) {
-    return this.http.post(this.URL_LOCK_APPRAISAL_SHEET, appSheet);
+  public lockAppraisalSheet(projectEvaluation: ProjectEvaluation) {
+    return this.http.post(this.URL_LOCK_APPRAISAL_SHEET, projectEvaluation);
   }
 
 }

@@ -3,14 +3,14 @@
 <ul class="list-group col-xs-6">
   <a
     class="list-group-item"
-    *ngFor="let userGroup of userGroup;let id = index">
-    <p class="role-name-style">{{userGroup.name}} </p>
-    <p class="role-description-style">{{userGroup.description}}</p>
+    *ngFor="let userGroupDto of userGroupDto;let id = index">
+    <p class="role-name-style">{{userGroupDto.name}} </p>
+    <p class="role-description-style">{{userGroupDto.description}}</p>
   </a>
 </ul>
 <form class="form-horizontal col-xs-6" (ngSubmit)="onAddUserGroup(userGroupForm)" #userGroupForm="ngForm">
   <div class="form-group">
-    <label class="control-label col-sm-2" for="name">User Group Name:</label>
+    <label class="control-label col-sm-2" for="name">User Group:</label>
     <div class="col-sm-10">
       <input type="text"
              class="form-control"

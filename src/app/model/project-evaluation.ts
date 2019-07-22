@@ -1,8 +1,8 @@
-import {User} from './user';
+import {UserDto} from './userDto';
 
 export class ProjectEvaluation {
-  appraisalSheetID: number;
-  user: User;
+  projectEvaluationID: number;
+  userDto: UserDto;
   date: Date;
   employeeName: String;
   projectName: String;

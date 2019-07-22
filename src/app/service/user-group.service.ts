@@ -1,8 +1,8 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {UserGroup} from '../model/userGroup';
-import {UserManager} from '../model/user-manager';
+import {UserGroupDto} from '../model/userGroupDto';
+import {UserManagerDto} from '../model/user-manager';
 
 @Injectable()
 export class UserGroupService {
@@ -16,17 +16,17 @@ export class UserGroupService {
     this.GET_USER_MANAGERS = 'http://localhost:8080/get-user-managers';
   }
 
-  public getUserGroups(): Observable<UserGroup []> {
-    return this.http.get <UserGroup[]>(this.ADD_GET_USER_GROUP);
+  public getUserGroups(): Observable<UserGroupDto []> {
+    return this.http.get <UserGroupDto[]>(this.ADD_GET_USER_GROUP);
   }
 
-  public addUserGroup(userGroup: UserGroup) {
+  public addUserGroup(userGroup: UserGroupDto) {
     if (userGroup.name !== '' && userGroup.description !== '') {
       return this.http.post(this.ADD_GET_USER_GROUP, userGroup);
     }
   }
 
-  public getUserManagers(): Observable<UserManager []> {
-    return this.http.get <UserManager[]>(this.GET_USER_MANAGERS);
+  public getUserManagers(): Observable<UserManagerDto []> {
+    return this.http.get <UserManagerDto[]>(this.GET_USER_MANAGERS);
   }
 }

@@ -49,8 +49,8 @@
     <label>Project manager</label>
     <div class="form-group">
       <select [(ngModel)]="selectedUserManager" [ngModelOptions]="{standalone: true}" required>
-        <option *ngFor="let userManager of userManagers" [ngValue]="userManager">
-          {{userManager.name}}
+        <option *ngFor="let userManagerDto of userManagers" [ngValue]="userManagerDto">
+          {{userManagerDto.name}}
         </option>
       </select>
     </div>

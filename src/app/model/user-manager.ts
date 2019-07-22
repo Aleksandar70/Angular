@@ -1,4 +1,4 @@
-export class UserManager {
+export class UserManagerDto {
   userManagerId: number;
   userManagerName: string;
 

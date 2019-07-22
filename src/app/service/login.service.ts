@@ -1,11 +1,11 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Injectable} from '@angular/core';
-import {User} from '../model/user';
+import {UserDto} from '../model/userDto';
 
 @Injectable()
 export class LoginService {
-  user: User;
+  user: UserDto;
   role: string;
   public URL_LOGIN = 'http://localhost:8080/login';
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
@@ -14,7 +14,7 @@ export class LoginService {
   }
 
   loginUser(username: string, password: string): Observable<Object> {
-    this.user = new User(username, password);
+    this.user = new UserDto(username, password);
     return this.http.post(this.URL_LOGIN , this.user, {headers: this.headers});
   }
 }

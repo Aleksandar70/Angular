@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
         + ' ' + location.path().substr(1).split('-')[1];
       if (this.route.startsWith('All users')
         || this.route.startsWith('New user')
-        || this.route.startsWith('User group')
+        || this.route.startsWith('UserDto group')
         || this.route.startsWith('Admin page')) {
         this.showAdminPageNavigation = true;
       }

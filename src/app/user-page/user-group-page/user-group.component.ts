@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {UserGroupService} from '../../service/user-group.service';
 import {NgForm} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {UserGroup} from '../../model/userGroup';
+import {UserGroupDto} from '../../model/userGroupDto';
 
 @Component({
   selector: 'app-user-group',
@@ -12,7 +12,7 @@ import {UserGroup} from '../../model/userGroup';
 })
 export class UserGroupComponent implements OnInit {
   @ViewChild('userGroupForm') userGroupForm: NgForm;
-  userGroup: UserGroup[];
+  userGroupDto: UserGroupDto[];
 
   constructor(private route: ActivatedRoute, private router: Router, private userGroupService: UserGroupService) {
   }
@@ -20,7 +20,7 @@ export class UserGroupComponent implements OnInit {
   ngOnInit() {
     this.userGroupService.getUserGroups().subscribe(
       data => {
-        this.userGroup = data;
+        this.userGroupDto = data;
       }
     );
   }
@@ -28,7 +28,7 @@ export class UserGroupComponent implements OnInit {
   onAddUserGroup(form: NgForm) {
     const formValue = form.value;
     if (formValue.name !== '' && formValue.description !== '' && formValue.name !== null) {
-      this.userGroupService.addUserGroup(new UserGroup(formValue.name, formValue.description)).subscribe(
+      this.userGroupService.addUserGroup(new UserGroupDto(formValue.name, formValue.description)).subscribe(
         data => {
           this.ngOnInit();
         }
