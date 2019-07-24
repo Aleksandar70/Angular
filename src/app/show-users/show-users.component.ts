@@ -39,7 +39,12 @@ export class ShowUsersComponent implements OnInit {
         timeout: false,
         type: 'success'
       });
-    });
+    }, errorNullUser => this.ngFlashMessageService.showFlashMessage({
+      messages: ['User does not exist!'],
+      dismissible: true,
+      timeout: false,
+      type: 'danger'
+    }));
     this.users = this.users.filter(item => item.username !== userDto.username);
   }
 }
