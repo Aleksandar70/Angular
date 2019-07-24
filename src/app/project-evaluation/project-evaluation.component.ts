@@ -49,9 +49,12 @@ export class ProjectEvaluationComponent implements OnInit {
       this.showEmployee = true;
     }
     this.appraisalSheetService.getAllAppraisalSheets().subscribe(data => {
-        this.projectEvaluations = data;;
+        this.projectEvaluations = data;
         const filteredAppSheet = this.projectEvaluations.find(ob => ob.userDto.username === this.username);
-        if (typeof filteredAppSheet !== 'undefined' && this.projectEvaluations.find(ob => ob.userDto.username === this.username).locked) {
+        if (typeof filteredAppSheet !== 'undefined' &&
+          this.projectEvaluations.find(ob => ob.appraisalPeriod === this.year
+            && this.projectEvaluations.find(ob1 => ob1.userDto.username === this.username).locked)
+          && this.projectEvaluations.find(ob1 => ob1.appraisalPeriod === this.year).locked) {
           this.enable = true;
           this.ngFlashMessageService.showFlashMessage({
             messages: ['Your document is locked and already created for this year!'],
@@ -95,8 +98,10 @@ export class ProjectEvaluationComponent implements OnInit {
           this.projectEvaluation1.userDto = savedAppSheet.userDto;
         }
         if (this.projectEvaluations.length > 0
-          && typeof this.projectEvaluations.find(ob => ob.userDto.username === this.username) !== 'undefined'
-          && this.projectEvaluations.find(ob => ob.userDto.username === this.username).locked) {
+          && this.projectEvaluations.find(ob => ob.appraisalPeriod === this.year
+            && typeof this.projectEvaluations.find(ob1 => ob1.userDto.username === this.username) !== 'undefined'
+            && this.projectEvaluations.find(ob1 => ob1.userDto.username === this.username).locked)
+          && this.projectEvaluations.find(ob1 => ob1.appraisalPeriod === this.year).locked) {
           this.ngFlashMessageService.showFlashMessage({
             messages: ['Document is locked!'],
             dismissible: true,
@@ -123,6 +128,7 @@ export class ProjectEvaluationComponent implements OnInit {
   }
 
   onAddAndLockAppSheet(form: NgForm) {
+    this.year = (new Date()).getFullYear() + ': Year end';
     if (confirm('Are you sure you want to save and lock this project evaluation? After locking no changes can be made.')) {
       let appSheetId = 0;
       if (this.projectEvaluation1 != null) {
@@ -135,8 +141,10 @@ export class ProjectEvaluationComponent implements OnInit {
       this.appraisalSheetService.getAllAppraisalSheets().subscribe(data => {
         this.projectEvaluations = data;
         const filteredAppSheet = this.projectEvaluations.find(ob => ob.userDto.username === this.username);
-        if (filteredAppSheet !== null && this.projectEvaluation1.appraisalPeriod.startsWith((new Date()).getFullYear().toString())
-          && typeof filteredAppSheet !== 'undefined' && this.projectEvaluations.find(ob => ob.userDto.username === this.username).locked) {
+        if (filteredAppSheet !== null && this.projectEvaluations.find(ob => ob.appraisalPeriod === this.year
+          && typeof filteredAppSheet !== 'undefined'
+          && this.projectEvaluations.find(ob1 => ob1.userDto.username === this.username).locked)
+          && this.projectEvaluations.find(ob1 => ob1.appraisalPeriod === this.year).locked) {
           this.ngFlashMessageService.showFlashMessage({
             messages: ['Your document is locked and already created for this year!'],
             dismissible: true,
