@@ -25,8 +25,16 @@
     </div>
     <div class="form-group">
       <button class="btn btn-primary">Login</button>
-      <a href="#" class="password-field">Forgot password?</a>
+      <a class="password-field pointer" (click)="onForgotPassword()">Forgot password?</a>
     </div>
   </form>
 </div>
+<app-modal [modalConfig]="modalConfig">
+  <h2 header>Forgot password</h2>
+  <div body>
+    <label for="username">Enter your username:</label>
+    <input #forgotPasswordUsername type="text" id="username" class="form-control" placeholder="username">
+    <div *ngIf="forgotPasswordSubmitted && !forgotPasswordUsernameValid()">Please provide a valid username</div>
+  </div>
+</app-modal>
 

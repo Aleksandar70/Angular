@@ -28,6 +28,8 @@ import {ShowUsersComponent} from './show-users/show-users.component';
 import {SortDirective} from './directives/SortDirective';
 import {AdminGuard} from './auth/auth.admin.guard';
 import {EmployeeGuard} from './auth/auth.employee.guard';
+import {ModalComponent} from './generic-components/modal/modal.component';
+import {FlashMessageService} from './generic-components/modal/flash-message.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import {EmployeeGuard} from './auth/auth.employee.guard';
     LoadingSpinnerComponent,
     DocumentInfoComponent,
     ShowUsersComponent,
-    SortDirective
+    SortDirective,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,7 @@ import {EmployeeGuard} from './auth/auth.employee.guard';
   ],
   providers: [LoginService, NgFlashMessageService, UserService,
     UserGroupService, ProjectEvaluationService, AuthService,
-    AuthGuard, AdminGuard, EmployeeGuard],
+    AuthGuard, AdminGuard, EmployeeGuard, FlashMessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

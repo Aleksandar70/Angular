@@ -1,0 +1,32 @@
+<ng-container *ngIf="modalConfig">
+  <div class="custom-modal" [style.opacity]="modalVisible ? '1' : '0'" [style.visibility]="modalVisible? 'visible' : 'hidden'">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="row">
+            <div class="col-lg-6">
+              <ng-content select="[header]"></ng-content>
+            </div>
+            <div class="col-lg-6">
+              <button type="button"
+                      class="close"
+                      (click)="closeModal()"><span>×</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body">
+          <ng-content select="[body]"></ng-content>
+        </div>
+        <div class="modal-footer">
+        <span *ngFor="let button of modalConfig.modalButtons">
+          <button type="button"
+                  class="{{ button.class }} modal-button"
+                  (click)="modalButtonClicked(button)">{{ button.text }}
+          </button>
+        </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

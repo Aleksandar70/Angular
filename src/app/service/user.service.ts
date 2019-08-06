@@ -9,10 +9,11 @@ import {UserManagerDto} from '../model/user-manager';
 export class UserService {
   user: UserDto;
   public URL_ADD_NEW_USER = 'http://localhost:8080/add-new-user';
-  private headers = new HttpHeaders({'Content-Type': 'application/json'});
   public URL_GET_LOGGED_IN_USER = 'http://localhost:8080/get-logged-in-user';
   public URL_GET_ALL_USERS = 'http://localhost:8080/get-all-users';
   public URL_DELETE_USER = 'http://localhost:8080/delete-user';
+  public URL_FORGOT_PASSWORD = 'http://localhost:8080/reset-password-email';
+  private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
   constructor(private http: HttpClient) {
   }
@@ -77,5 +78,9 @@ export class UserService {
 
   setIsLoggedIn(value: string) {
     sessionStorage.setItem('isLoggedIn', value);
+  }
+
+  sendResetPasswordEmail(username: string) {
+    return this.http.post(this.URL_FORGOT_PASSWORD, {username: username});
   }
 }

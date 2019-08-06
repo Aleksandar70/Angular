@@ -28,3 +28,7 @@
 #usernameError, #passwordError, #emailError {
   color: red;
 }
+
+.pointer {
+  cursor: pointer;
+}
